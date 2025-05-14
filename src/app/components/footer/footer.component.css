@@ -1,0 +1,10 @@
+footer{
+    height: var(--footer-height);
+    background: linear-gradient(to top ,#f5f5f5, white);
+    border-top: 1px solid #cdcdcd;
+    p{
+        margin-bottom: 0;
+        color: gray;
+        font-size: .7rem;
+    }
+}

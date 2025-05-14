@@ -1,0 +1,19 @@
+.btn-widget{
+    --btn-side: 35px;
+    min-width: var(--btn-side);
+    width: max-content;
+    height: var(--btn-side);
+    background-color: #f0f0f0;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: filter .2s;
+    &:hover{
+        filter: brightness(90%);
+    }
+}
+
+img{
+    height: 80%;
+    width: auto;
+}
