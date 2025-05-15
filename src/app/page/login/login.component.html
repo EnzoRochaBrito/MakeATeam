@@ -1,12 +1,13 @@
+<div class="big-gradient"></div>
 <app-auth [title]="title">
     <form class="credentials mx-auto m-3 text-center" action="" [formGroup]="loginForm">
         <div class="text-start">
             <p class="input-name mb-0">Email</p>
-            <custom-input class="m-2" placeholder="Ex: insira o seu email" inputType="text" formControlName="email" icon="./login/mail.svg"></custom-input>
+            <custom-input class="m-2" placeholder="Insira o seu email" inputType="text" formControlName="email" icon="./login/mail.svg"></custom-input>
         </div>
         <div class="text-start">
             <p class="input-name mb-0">Senha</p>
-            <custom-input class="m-2" placeholder="Ex: insira a sua senha" inputType="password" formControlName="password" icon="./login/key.svg"></custom-input>
+            <custom-input class="m-2" placeholder="Insira a sua senha" inputType="password" formControlName="password" icon="./login/key.svg"></custom-input>
         </div>
         <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="!loginForm.invalid">Logar</button>
     </form>

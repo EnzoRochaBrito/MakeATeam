@@ -38,10 +38,6 @@
     to {opacity: 1; transform: translateX(0);}
 }
 
-.big-gradient{
-    z-index: -1;
-    background: linear-gradient(to top, rgb(230, 235, 253), white);
-}
 
 .content{
     width: 80vw;
