@@ -1,0 +1,19 @@
+main{
+    height: calc(100dvh - var(--footer-height));
+}
+
+.form-cell{
+    width: 600px;
+    max-width: 90vw;
+    height: max-content;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.form-title{
+    border-radius: 10px 10px 0 0;
+}
+
+.title-text{
+    font-size: 1.4rem;
+}
