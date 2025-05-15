@@ -1,4 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root{
     --footer-height: 30px;
     --header-height: 55px;
+}
+
+body{
+    overflow-x: hidden;
+    font-family: "Gothic A1";
+}
+
+.underline_eff{
+    &::before{
+        content: '';
+        width: 0;
+        height: 1px;
+        position: absolute;
+        bottom: 0;
+        background-color: black;
+        transition: width 1s;
+    }
+    &:hover::before{
+        width: 100%;
+    }
 }
