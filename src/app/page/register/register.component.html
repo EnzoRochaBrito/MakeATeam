@@ -1,1 +1,21 @@
-<p>register works!</p>
+<app-auth [title]="title">
+    <form class="credentials mx-auto m-3 text-center" action="" [formGroup]="registerForm">
+        <div class="text-start">
+            <p class="input-name mb-0">Username</p>
+            <custom-input class="m-2" placeholder="Insira o seu username" inputType="text" formControlName="username" icon="./login/person.svg"></custom-input>
+        </div>
+        <div class="text-start">
+            <p class="input-name mb-0">Email</p>
+            <custom-input class="m-2" placeholder="Insira o seu email" inputType="email" formControlName="email" icon="./login/mail.svg"></custom-input>
+        </div>
+        <div class="text-start">
+            <p class="input-name mb-0">Senha</p>
+            <custom-input class="m-2" placeholder="Insira a sua senha" inputType="email" formControlName="passwordOne" icon="./login/key.svg"></custom-input>
+        </div>
+        <div class="text-start">
+            <p class="input-name mb-0">Repetir Senha</p>
+            <custom-input class="m-2" placeholder="Repita a sua senha" inputType="email" formControlName="passwordTwo" icon="./login/key2.svg"></custom-input>
+        </div>
+        <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="!registerForm.invalid">Cadastrar</button>
+    </form>
+</app-auth> 
