@@ -1,0 +1,11 @@
+.credentials {
+    width: 90%;
+}
+
+.submit-btn {
+    width: 120px;
+}
+
+.input-name {
+    transform: translateY(15px);
+}
