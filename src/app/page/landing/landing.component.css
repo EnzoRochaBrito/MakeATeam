@@ -2,6 +2,14 @@ header {
     height: var(--header-height);
 }
 
+.fast-acess ul .link{
+    transition: color .2s;
+    cursor: pointer;
+    &:hover{
+        color: var(--bs-blue);
+    }
+}
+
 .title{
     font-size: 1.5rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -28,6 +36,10 @@ header {
     #l2{
         color: var(--bs-blue);
         animation: appear_right 1.5s;
+        transition: transform .2s;
+        &:hover{
+            transform: rotateZ(5deg);
+        }
     }
     .text{
         font-weight: 600;
@@ -40,11 +52,11 @@ header {
 }
 
 @keyframes appear_left {
-    from {opacity: 0; transform: translateX(-25%);}
+    from {opacity: 0; transform: translateX(-500px);}
     to {opacity: 1; transform: translateX(0);}
 }
 @keyframes appear_right {
-    from {opacity: 0; transform: translateX(25%);}
+    from {opacity: 0; transform: translateX(500px);}
     to {opacity: 1; transform: translateX(0);}
 }
 @keyframes appear_top {
@@ -69,5 +81,14 @@ header {
         color: var(--bs-blue);
         display: inline-block;
         font-weight: 700;
+    }
+}
+
+.questions .row div .clickable{
+    color: var(--bs-blue);
+    cursor: pointer;
+    transition: font-size .2s;
+    &:hover{
+        font-size: 2.2rem;
     }
 }
