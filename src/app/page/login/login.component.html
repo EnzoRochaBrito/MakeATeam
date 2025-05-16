@@ -2,13 +2,33 @@
 <app-auth [title]="title">
     <form class="credentials mx-auto m-3 text-center" action="" [formGroup]="loginForm">
         <div class="text-start">
-            <p class="input-name mb-0">Email</p>
-            <custom-input class="m-2" placeholder="Insira o seu email" inputType="text" formControlName="email" icon="./login/mail.svg"></custom-input>
+          <div class="input-info d-flex flex-row justify-content-between w-100">
+            <p class="mb-0">Email</p>
+            <p class="mb-0 text-danger" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">{{ controlWarn.email }}</p>
+          </div>
+          <custom-input
+            class="m-2"
+            placeholder="Insira o seu email"
+            inputType="text"
+            [control]="loginForm.controls['email']"
+            icon="./login/mail.svg"
+          ></custom-input>
         </div>
         <div class="text-start">
-            <p class="input-name mb-0">Senha</p>
-            <custom-input class="m-2" placeholder="Insira a sua senha" inputType="password" formControlName="password" icon="./login/key.svg"></custom-input>
+          <div class="input-info d-flex flex-row justify-content-between w-100">
+            <p class="mb-0">Senha</p>
+            <p class="mb-0 text-danger" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">{{ controlWarn.password }}</p>
+          </div>
+          <custom-input
+            class="m-2"
+            placeholder="Insira a sua senha"
+            inputType="password"
+            [control]="loginForm.controls['password']"
+            icon="./login/key.svg"
+          ></custom-input>
         </div>
-        <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="!loginForm.invalid">Logar</button>
-    </form>
+      
+        <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="loginForm.invalid">Logar</button>
+      </form>
+      
 </app-auth>

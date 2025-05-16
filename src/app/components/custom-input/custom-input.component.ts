@@ -1,39 +1,30 @@
+import { NgClass } from '@angular/common';
 import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormControl, FormControlName, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 type InputTypes = 'text' | 'email' | 'password';
 
 @Component({
   selector: 'custom-input',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './custom-input.component.html',
   styleUrl: './custom-input.component.css',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputComponent),
-      multi: true
-    }
-  ]
+  // providers: [
+  //   {
+  //     provide: NG_VALUE_ACCESSOR,
+  //     useExisting: forwardRef(() => CustomInputComponent),
+  //     multi: true
+  //   }
+  // ]
 })
-export class CustomInputComponent implements ControlValueAccessor {
+export class CustomInputComponent {
   @Input() icon!: string;
   @Input() placeholder!: string;
-  @Input() formControlInputName!: string;
+  @Input() control!: FormControl;
   @Input() inputType: InputTypes = 'text';
 
   onChange: any = () => {}
   onTouched: any = () => {}
   value: string = ''
-
-  writeValue(obj: any): void {
-    this.value = obj
-  }
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
 
 }

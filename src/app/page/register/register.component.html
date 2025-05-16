@@ -2,21 +2,33 @@
 <app-auth [title]="title">
     <form class="credentials mx-auto m-3 text-center" action="" [formGroup]="registerForm">
         <div class="text-start">
-            <p class="input-name mb-0">Username</p>
-            <custom-input class="m-2" placeholder="Insira o seu username" inputType="text" formControlName="username" icon="./login/person.svg"></custom-input>
+            <div class="input-info d-flex flex-row justify-content-between w-100">
+                <p class="mb-0">Username</p>
+                <p class="mb-0 text-danger" *ngIf="registerForm.controls['username'].touched && registerForm.controls['username'].invalid">{{controlWarn.username}}</p>
+            </div>
+            <custom-input class="m-2" placeholder="Insira o seu username" inputType="text" [control]="registerForm.controls['username']" icon="./login/person.svg"></custom-input>
         </div>
         <div class="text-start">
-            <p class="input-name mb-0">Email</p>
-            <custom-input class="m-2" placeholder="Insira o seu email" inputType="email" formControlName="email" icon="./login/mail.svg"></custom-input>
+            <div class="input-info d-flex flex-row justify-content-between w-100">
+                <p class="mb-0">Email</p>
+                <p class="mb-0 text-danger" *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].invalid">{{controlWarn.email}}</p>
+            </div>
+            <custom-input class="m-2" placeholder="Insira o seu email" inputType="email" [control]="registerForm.controls['email']" icon="./login/mail.svg"></custom-input>
         </div>
         <div class="text-start">
-            <p class="input-name mb-0">Senha</p>
-            <custom-input class="m-2" placeholder="Insira a sua senha" inputType="email" formControlName="passwordOne" icon="./login/key.svg"></custom-input>
+            <div class="input-info d-flex flex-row justify-content-between w-100">
+                <p class="mb-0">Senha</p>
+                <p class="mb-0 text-danger" *ngIf="registerForm.controls['passwordOne'].touched && registerForm.controls['passwordOne'].invalid">{{controlWarn.passwordOne}}</p>
+            </div>
+            <custom-input class="m-2" placeholder="Insira a sua senha" inputType="email" [control]="registerForm.controls['passwordOne']" icon="./login/key.svg"></custom-input>
         </div>
         <div class="text-start">
-            <p class="input-name mb-0">Repetir Senha</p>
-            <custom-input class="m-2" placeholder="Repita a sua senha" inputType="email" formControlName="passwordTwo" icon="./login/key2.svg"></custom-input>
+            <div class="input-info d-flex flex-row justify-content-between w-100">
+                <p class="mb-0">Repetir Senha</p>
+                <p class="mb-0 text-danger" *ngIf="registerForm.controls['passwordTwo'].touched && registerForm.controls['passwordTwo'].invalid">{{controlWarn.passwordTwo}}</p>
+            </div>
+            <custom-input class="m-2" placeholder="Repita a sua senha" inputType="email" [control]="registerForm.controls['passwordTwo']" icon="./login/key2.svg"></custom-input>
         </div>
-        <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="!registerForm.invalid">Cadastrar</button>
+        <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="registerForm.invalid">Cadastrar</button>
     </form>
 </app-auth> 
