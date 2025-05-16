@@ -13,6 +13,24 @@
     }    
 }
 
+.selected{
+    &::before{
+        background-color: var(--bs-primary) !important;
+    }   
+}
+
+.wrong{
+    &::before{
+        background-color: var(--bs-danger) !important;
+    }   
+}
+
+.ok{
+    &::before{
+        background-color: var(--bs-green);
+    } 
+}
+
 .input-icon img{
     --input-size: 30px;
     width: var(--input-size);
