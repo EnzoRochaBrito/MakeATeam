@@ -1,0 +1,11 @@
+.create-project-wrapper{
+    width: 50vw;
+    @media screen and (max-width: 100px) {
+        width: 100vw;
+    }
+}
+
+.create-project{
+    border-radius: 10px;
+
+}
