@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Projeto - MakeATeam</title>
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --light-blue: #e8f0fe;
+            --dark-blue: #0d47a1;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --border-color: #dadce0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: #333;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        nav a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        
+        .create-project-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        
+        .create-project-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        
+        .create-project-header h1 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .tech-tags-container {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.8rem;
+            min-height: 50px;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tag {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tag-remove {
+            margin-left: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .tech-input-container {
+            display: flex;
+        }
+        
+        .tech-input-container input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px 0 0 4px;
+            border-right: none;
+        }
+        
+        .tech-input-container button {
+            background-color: var(--secondary-blue);
+            color: white;
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn-secondary {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            color: #555;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+        }
+        
+        .project-image-upload {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .image-preview {
+            width: 100px;
+            height: 100px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .upload-btn {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            border: 1px dashed var(--primary-blue);
+        }
+        
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">MakeATeam</div>
+        <nav>
+            <a href="#">Início</a>
+            <a href="#">Encontrar Projetos</a>
+            <a href="#" class="active">Criar Projeto</a>
+            <a href="#">Perfil</a>
+        </nav>
+    </header>
+    
+    <div class="create-project-container">
+        <div class="create-project-header">
+            <h1>Criar Novo Projeto</h1>
+            <p>Preencha os detalhes do seu projeto para encontrar os colaboradores ideais</p>
+        </div>
+        
+        <form>
+            <div class="form-group">
+                <label for="project-name">Nome do Projeto</label>
+                <input type="text" id="project-name" placeholder="Ex: Plataforma de Aprendizado Online" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="project-description">Descrição do Projeto</label>
+                <textarea id="project-description" placeholder="Descreva seu projeto com detalhes: objetivos, funcionalidades, etc." required></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="project-category">Categoria</label>
+                    <select id="project-category" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="web">Desenvolvimento Web</option>
+                        <option value="mobile">Desenvolvimento Mobile</option>
+                        <option value="ai">Inteligência Artificial</option>
+                        <option value="game">Desenvolvimento de Jogos</option>
+                        <option value="iot">IoT</option>
+                        <option value="other">Outro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="project-level">Nível de Experiência</label>
+                    <select id="project-level" required>
+                        <option value="">Selecione o nível</option>
+                        <option value="beginner">Iniciante</option>
+                        <option value="intermediate">Intermediário</option>
+                        <option value="advanced">Avançado</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Tecnologias Necessárias</label>
+                <div class="tech-tags-container">
+                    <div class="tech-tags" id="tech-tags">
+                        <!-- Tags serão adicionadas dinamicamente -->
+                    </div>
+                    <div class="tech-input-container">
+                        <input type="text" id="tech-input" placeholder="Adicione tecnologias (React, Node, Python...)">
+                        <button type="button" id="add-tech-btn">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Imagem do Projeto</label>
+                <div class="project-image-upload">
+                    <div class="image-preview" id="image-preview">
+                        <span>Sem imagem</span>
+                    </div>
+                    <label class="upload-btn">
+                        Escolher Imagem
+                        <input type="file" id="project-image" accept="image/*" style="display: none;">
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="project-start">Data de Início</label>
+                    <input type="date" id="project-start" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="project-duration">Duração Estimada (semanas)</label>
+                    <input type="number" id="project-duration" min="1" placeholder="4">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="project-repo">Link do Repositório (opcional)</label>
+                <input type="url" id="project-repo" placeholder="https://github.com/seu-usuario/seu-projeto">
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Criar Projeto</button>
+            </div>
+        </form>
+    </div>
+    
+    <footer>
+        <p>© 2023 MakeATeam - Conectando desenvolvedores para projetos incríveis</p>
+        <p>Termos de Uso | Política de Privacidade | Contato</p>
+    </footer>
+
+    <script>
+        // Função para adicionar tags de tecnologias
+        document.getElementById('add-tech-btn').addEventListener('click', function() {
+            const techInput = document.getElementById('tech-input');
+            const techTagsContainer = document.getElementById('tech-tags');
+            
+            if (techInput.value.trim() !== '') {
+                const tag = document.createElement('div');
+                tag.className = 'tag';
+                tag.innerHTML = `
+                    ${techInput.value.trim()}
+                    <span class="tag-remove">&times;</span>
+                `;
+                
+                techTagsContainer.appendChild(tag);
+                techInput.value = '';
+                
+                // Adiciona evento para remover tag
+                tag.querySelector('.tag-remove').addEventListener('click', function() {
+                    tag.remove();
+                });
+            }
+        });
+        
+        // Permite adicionar tags pressionando Enter
+        document.getElementById('tech-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('add-tech-btn').click();
+            }
+        });
+        
+        // Preview da imagem do projeto
+        document.getElementById('project-image').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const preview = document.getElementById('image-preview');
+                    preview.innerHTML = `<img src="${event.target.result}" alt="Preview">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

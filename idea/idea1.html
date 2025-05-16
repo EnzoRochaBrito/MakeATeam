@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontrar Projetos - MakeATeam</title>
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --light-blue: #e8f0fe;
+            --dark-blue: #0d47a1;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: #333;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        nav a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        
+        .search-container {
+            background-color: var(--primary-blue);
+            padding: 2rem;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .search-container h1 {
+            margin-top: 0;
+            font-size: 2rem;
+        }
+        
+        .search-bar {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        
+        .search-bar button {
+            background-color: var(--dark-blue);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .filter-section {
+            background-color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .filter-options select {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-image {
+            height: 150px;
+            background-color: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-info h3 {
+            margin-top: 0;
+            color: var(--primary-blue);
+        }
+        
+        .project-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tag {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .view-project {
+            display: block;
+            text-align: center;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 0.7rem;
+            margin-top: 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .view-project:hover {
+            background-color: var(--dark-blue);
+        }
+        
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">MakeATeam</div>
+        <nav>
+            <a href="#">Início</a>
+            <a href="#" class="active">Encontrar Projetos</a>
+            <a href="#">Meus Projetos</a>
+            <a href="#">Perfil</a>
+        </nav>
+    </header>
+    
+    <div class="search-container">
+        <h1>Encontre o projeto ideal para suas habilidades</h1>
+        <p>Conecte-se com desenvolvedores que compartilham seus interesses</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquise por tecnologias (React, Node, Python...)">
+            <button>Buscar</button>
+        </div>
+    </div>
+    
+    <div class="filter-section">
+        <div class="filter-options">
+            <select>
+                <option>Todas as tecnologias</option>
+                <option>JavaScript</option>
+                <option>Python</option>
+                <option>Java</option>
+                <option>PHP</option>
+            </select>
+            <select>
+                <option>Todos os níveis</option>
+                <option>Iniciante</option>
+                <option>Intermediário</option>
+                <option>Avançado</option>
+            </select>
+            <select>
+                <option>Todos os tipos</option>
+                <option>Open Source</option>
+                <option>Comercial</option>
+                <option>Estudo</option>
+            </select>
+        </div>
+        <div class="sort-options">
+            <span>Ordenar por:</span>
+            <select>
+                <option>Mais recentes</option>
+                <option>Mais populares</option>
+                <option>Melhor avaliados</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="projects-grid">
+        <div class="project-card">
+            <div class="project-image">
+                <span>Imagem do Projeto</span>
+            </div>
+            <div class="project-info">
+                <h3>Plataforma de Aprendizado</h3>
+                <p>Plataforma educacional com cursos interativos sobre desenvolvimento web.</p>
+                <div class="project-tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">MongoDB</span>
+                </div>
+                <div class="project-stats">
+                    <span>5 membros</span>
+                    <span>2 semanas atrás</span>
+                </div>
+                <a href="#" class="view-project">Ver Projeto</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image">
+                <span>Imagem do Projeto</span>
+            </div>
+            <div class="project-info">
+                <h3>App de Finanças Pessoais</h3>
+                <p>Aplicativo para controle de gastos e planejamento financeiro pessoal.</p>
+                <div class="project-tags">
+                    <span class="tag">Flutter</span>
+                    <span class="tag">Firebase</span>
+                </div>
+                <div class="project-stats">
+                    <span>3 membros</span>
+                    <span>3 dias atrás</span>
+                </div>
+                <a href="#" class="view-project">Ver Projeto</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image">
+                <span>Imagem do Projeto</span>
+            </div>
+            <div class="project-info">
+                <h3>Jogo Educativo para Crianças</h3>
+                <p>Desenvolvimento de jogo educativo com foco em programação para crianças.</p>
+                <div class="project-tags">
+                    <span class="tag">Unity</span>
+                    <span class="tag">C#</span>
+                    <span class="tag">UI/UX</span>
+                </div>
+                <div class="project-stats">
+                    <span>4 membros</span>
+                    <span>1 mês atrás</span>
+                </div>
+                <a href="#" class="view-project">Ver Projeto</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image">
+                <span>Imagem do Projeto</span>
+            </div>
+            <div class="project-info">
+                <h3>Chatbot para Suporte Técnico</h3>
+                <p>Desenvolvimento de chatbot com IA para atendimento automatizado.</p>
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">NLP</span>
+                    <span class="tag">Django</span>
+                </div>
+                <div class="project-stats">
+                    <span>2 membros</span>
+                    <span>5 dias atrás</span>
+                </div>
+                <a href="#" class="view-project">Ver Projeto</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image">
+                <span>Imagem do Projeto</span>
+            </div>
+            <div class="project-info">
+                <h3>Portal de Notícias Locais</h3>
+                <p>Portal colaborativo de notícias com foco em conteúdo regional.</p>
+                <div class="project-tags">
+                    <span class="tag">WordPress</span>
+                    <span class="tag">PHP</span>
+                    <span class="tag">SEO</span>
+                </div>
+                <div class="project-stats">
+                    <span>6 membros</span>
+                    <span>2 meses atrás</span>
+                </div>
+                <a href="#" class="view-project">Ver Projeto</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image">
+                <span>Imagem do Projeto</span>
+            </div>
+            <div class="project-info">
+                <h3>API de Geolocalização</h3>
+                <p>API para serviços baseados em localização com suporte a múltiplos provedores.</p>
+                <div class="project-tags">
+                    <span class="tag">Go</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">AWS</span>
+                </div>
+                <div class="project-stats">
+                    <span>3 membros</span>
+                    <span>1 semana atrás</span>
+                </div>
+                <a href="#" class="view-project">Ver Projeto</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 MakeATeam - Conectando desenvolvedores para projetos incríveis</p>
+        <p>Termos de Uso | Política de Privacidade | Contato</p>
+    </footer>
+</body>
+</html>
