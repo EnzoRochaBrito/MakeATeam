@@ -4,6 +4,7 @@ main{
     /* background-color: #f7f7f7; */
     height: max-content;
     min-height: calc(100dvh - var(--footer-height) - var(--header-height));
+    background-color: #f8f8f8;
     /* border-right: 1px solid #f7f7f7;
     border-left: 1px solid #f7f7f7; */
 }
