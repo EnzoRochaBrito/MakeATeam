@@ -1,12 +1,9 @@
 main{
-    width: 80vw;
+    width: 100vw;
     margin: 0 auto;
     /* background-color: #f7f7f7; */
     height: max-content;
     min-height: calc(100dvh - var(--footer-height) - var(--header-height));
     /* border-right: 1px solid #f7f7f7;
     border-left: 1px solid #f7f7f7; */
-    @media screen and (max-width: 1200px) {
-        width: 100vw;
-    }
 }

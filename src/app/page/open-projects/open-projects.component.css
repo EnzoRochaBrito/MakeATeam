@@ -1,0 +1,11 @@
+.search-container{
+    text-align: center;
+    .title{
+        font-weight: bold;
+    }
+    .search-stack{
+        display: inline;
+        width: 500px;
+        max-width: 90vw;
+    }
+}
