@@ -6,7 +6,7 @@
                 <p class="mb-0">Username</p>
                 <p class="mb-0 text-danger" *ngIf="registerForm.controls['username'].touched && registerForm.controls['username'].invalid">{{controlWarn.username}}</p>
             </div>
-            <custom-input class="m-2" placeholder="Insira o seu username" inputType="text" [control]="registerForm.controls['username']" icon="./login/person.svg"></custom-input>
+            <custom-input class="m-2" placeholder="Insira o seu nome de usuário" inputType="text" [control]="registerForm.controls['username']" icon="./login/person.svg"></custom-input>
         </div>
         <div class="text-start">
             <div class="input-info d-flex flex-row justify-content-between w-100">
