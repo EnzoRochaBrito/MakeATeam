@@ -22,3 +22,7 @@ header{
     }
 
 }
+
+.fast-acess .buttons ul li{
+    cursor: pointer;
+}
