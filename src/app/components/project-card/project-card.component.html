@@ -1,0 +1,20 @@
+<div class="project-card shadow">
+    <div class="project-image object-fit-cover position-relative">
+        <p *ngIf="!image" class="no-img-p position-absolute top-50 start-50 translate-middle">Sem Foto</p>
+        <img *ngIf="image" [src]="image" alt="">
+    </div>
+    <div class="project-body p-4">
+        <h5 class="title mb-4">{{title}}</h5>
+        <p class="description">{{description}}</p>
+        <div class="tags p-0 d-flex flex-row align-items-center gap-2 overflow-x-auto">
+            <p class="tag m-0 mb-1 px-1" *ngFor="let tag of tags">{{tag}}</p>
+        </div>
+        <div class="info my-3 d-flex align-items-center justify-content-between bg">
+            <p class="mb-0 members">{{members}} membros</p>
+            <p class="mb-0 time">{{timeAgo}}</p>
+        </div>
+        <a href="">
+            <div class="acess btn btn-primary w-100">Ver Projeto</div>
+        </a>
+    </div>
+</div>

@@ -14,7 +14,7 @@ export const routes: Routes = [
         loadComponent: () => import('./page/login/login.component').then(m => m.LoginComponent)
     },
     {
-        path: "open-projects",
+        path: "open",
         loadComponent: () => import('./page/open-projects/open-projects.component').then(m => m.OpenProjectsComponent)
     },
     {
