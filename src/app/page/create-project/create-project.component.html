@@ -69,7 +69,7 @@
                             [control]="createProjectForm.controls.startDate"
                             ></custom-input-form>
                         </div>
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-md-4 mb-3">
                             <custom-input-form
                             name="Duração estimada (semanas)"
                             placeholder=""
@@ -97,7 +97,7 @@
                     <hr>
 
                     <div class="form-opt d-flex flex-row gap-3 align-items-center justify-content-end">
-                        <button class="btn cancel-btn">Cancelar</button>
+                        <div class="btn cancel-btn" routerLink="/open">Cancelar</div>
                         <button type="submit" class="btn submit-btn" [disabled]="createProjectForm.invalid">Criar Projeto</button>
                     </div>
                 </form>

@@ -3,11 +3,12 @@ import { StandartComponent } from '../../template/standart/standart.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomInputFormComponent } from '../../components/custom-input-form/custom-input-form.component';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-create-project',
-  imports: [StandartComponent, ReactiveFormsModule, CustomInputFormComponent, CommonModule],
+  imports: [StandartComponent, ReactiveFormsModule, CustomInputFormComponent, CommonModule, RouterLink],
   templateUrl: './create-project.component.html',
   styleUrl: './create-project.component.css'
 })
