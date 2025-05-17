@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthTemplateComponent } from '../../template/auth/auth.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CustomInputComponent } from '../../components/custom-input/custom-input.component';
+import { CustomInputAuthComponent } from '../../components/custom-input-auth/custom-input.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [AuthTemplateComponent, ReactiveFormsModule, CustomInputComponent, CommonModule],
+  imports: [AuthTemplateComponent, ReactiveFormsModule, CustomInputAuthComponent, CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

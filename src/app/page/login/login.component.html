@@ -6,26 +6,26 @@
             <p class="mb-0">Email</p>
             <p class="mb-0 text-danger" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">{{ controlWarn.email }}</p>
           </div>
-          <custom-input
+          <custom-auth-input
             class="m-2"
             placeholder="Insira o seu email"
             inputType="text"
             [control]="loginForm.controls['email']"
             icon="./login/mail.svg"
-          ></custom-input>
+          ></custom-auth-input>
         </div>
         <div class="text-start">
           <div class="input-info d-flex flex-row justify-content-between w-100">
             <p class="mb-0">Senha</p>
             <p class="mb-0 text-danger" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">{{ controlWarn.password }}</p>
           </div>
-          <custom-input
+          <custom-auth-input
             class="m-2"
             placeholder="Insira a sua senha"
             inputType="password"
             [control]="loginForm.controls['password']"
             icon="./login/key.svg"
-          ></custom-input>
+          ></custom-auth-input>
         </div>
       
         <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="loginForm.invalid">Logar</button>

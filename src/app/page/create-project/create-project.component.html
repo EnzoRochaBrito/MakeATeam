@@ -1,7 +1,107 @@
 <app-standart>
 
-    <div class="create-project-wrapper mx-auto p-md-3 p-0">
-        <div class="create-project bg-white shadow p-2 pt-4">
+    <div class="create-project-wrapper mx-auto p-md-3 p-0 mb-md-2 mb-0">
+        <div class="create-project bg-white shadow p-2 pt-4 pb-4">
+            <div class="head text-center p-4">
+                <h2 class="text-primary">Criar Novo Projeto</h2>
+                <p>Preencha os detalhes do seu projeto</p>
+                <hr>
+            </div>
+            <div class="project-form px-4">
+                <form action="" [formGroup]="createProjectForm" class="d-flex flex-column gap-3" (ngSubmit)="submitProject($event)">
+                    
+                    <custom-input-form
+                    name="Nome do projeto*"
+                    placeholder="Ex: E-Commerce Futurista"
+                    type="text"
+                    [control]="createProjectForm.controls.name"
+                    ></custom-input-form>
+
+                    <div class="description">
+                        <p class="mb-0">Descrição do projeto*</p>
+                        <textarea formControlName="description" class="form-control w-100 p-2" name="" id="" placeholder="Descreva seu projeto com detalhes: objetivos, funcionalidades, etc..."></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-3 mb-md-0">
+                            <div class="description">
+                                <p class="mb-0">Categoria*</p>
+                                <select formControlName="category" name="" id="" class="form-select">
+                                    <option value="" selected disabled>Selecione uma categoria</option>
+                                    <option *ngFor="let pC of projectCategory; let i = index" [value]="i">{{pC}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-6">
+                            <div class="description">
+                                <p class="mb-0">Nivel de Experiência<p>
+                                <select formControlName="experience" name="" id="" class="form-select" (change)="addEx($event)">
+                                    <option value="" selected disabled>Selecione níveis de experiência</option>
+                                    <option *ngFor="let eL of experienceLevel; let i = index" [value]="i">{{eL}}</option>
+                                </select>
+                                <div class="tags p-0 d-flex flex-row align-items-center gap-2 overflow-x-auto mb-1">
+                                    <p class="tag mb-0 px-1" *ngFor="let tag of expArr; let i = index">{{tag}} <span class="remove-tag" (click)="removeEx(i)">x</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="necessary-tech">
+                        <p class="mb-0">Tecnologias Necessárias</p>
+                        <div class="form-control p-2">
+                            <div class="tags p-0 d-flex flex-row align-items-center gap-2 overflow-x-auto mb-1">
+                                <p class="tag mb-0 px-1" *ngFor="let tag of techArr; let i = index">{{tag}} <span class="remove-tag" (click)="removeTag(i)">x</span></p>
+                            </div>
+                            <div class="add-tech d-flex flex-row">
+                                <input formControlName="technologies" type="text" class="form-control p-2">
+                                <div class="add-tech-btn w-auto px-3 d-flex justify-content-center align-items-center" (click)="addTag()">Adicionar</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-3 mb-md-0">
+                            <custom-input-form
+                            name="Data de início"
+                            placeholder="dd/mm/yyyy"
+                            type="date"
+                            [control]="createProjectForm.controls.startDate"
+                            ></custom-input-form>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <custom-input-form
+                            name="Duração estimada (semanas)"
+                            placeholder=""
+                            type="number"
+                            [control]="createProjectForm.controls.estimatedTime"
+                            ></custom-input-form>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <custom-input-form
+                            name="Vagas"
+                            placeholder=""
+                            type="number"
+                            [control]="createProjectForm.controls.vacancy"
+                            ></custom-input-form>
+                        </div>
+                    </div>
+
+                    <custom-input-form
+                    name="Link do repositório (opcional)"
+                    placeholder="https://github/seu-usuario/seu-projeto"
+                    type="text"
+                    [control]="createProjectForm.controls.repository"
+                    ></custom-input-form>
+
+                    <hr>
+
+                    <div class="form-opt d-flex flex-row gap-3 align-items-center justify-content-end">
+                        <button class="btn cancel-btn">Cancelar</button>
+                        <button type="submit" class="btn submit-btn" [disabled]="createProjectForm.invalid">Criar Projeto</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

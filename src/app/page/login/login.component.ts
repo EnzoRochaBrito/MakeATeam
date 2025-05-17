@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthTemplateComponent } from '../../template/auth/auth.component';
-import { CustomInputComponent } from '../../components/custom-input/custom-input.component';
+import { CustomInputAuthComponent } from '../../components/custom-input-auth/custom-input.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [AuthTemplateComponent, CustomInputComponent, ReactiveFormsModule, CommonModule],
+  imports: [AuthTemplateComponent, CustomInputAuthComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

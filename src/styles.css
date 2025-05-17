@@ -35,3 +35,23 @@ body{
     width: 100%;
     height: 100%;
 }
+
+.tag{
+    color: var(--bs-primary) !important;
+    background: #0d6dfd25;
+    border-radius: 5px;
+}
+
+.tags{
+    &::-webkit-scrollbar-thumb {
+        background: var(--bs-primary);
+    }
+    &::-webkit-scrollbar {
+        margin-top: 2px;
+        height: 5px;
+        border-radius: 50px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: #085cd7;
+    } 
+}

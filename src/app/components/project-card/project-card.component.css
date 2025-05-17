@@ -31,26 +31,6 @@
     font-weight: 600;
 }
 
-.tag{
-    color: var(--bs-primary);
-    background: #0d6dfd25;
-    border-radius: 5px;
-}
-
-.tags{
-    &::-webkit-scrollbar-thumb {
-        background: var(--bs-primary);
-    }
-    &::-webkit-scrollbar {
-        margin-top: 2px;
-        height: 5px;
-        border-radius: 50px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        background: #085cd7;
-    } 
-}
-
 .info p {
     color: var(--bs-gray);
 }
