@@ -4,6 +4,10 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CustomInputAuthComponent } from '../../components/custom-input-auth/custom-input.component';
 import { CommonModule } from '@angular/common';
 import { EqualPasswordValidator } from '../../validators/equal-password.validator';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { RegisterDTO } from '../../utils/auth.dto';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +17,8 @@ import { EqualPasswordValidator } from '../../validators/equal-password.validato
 })
 export class RegisterComponent {
   title: string = 'Registrar';
+
+  constructor(private authService: AuthService, private router: Router){}
 
   registerForm = new FormGroup({
     username:    new FormControl('', [Validators.minLength(5), Validators.maxLength(30), Validators.required]),
@@ -28,5 +34,23 @@ export class RegisterComponent {
     email: "Insira um email válido.",
     passwordOne: "Insira no mínimo 6 caracteres.",
     passwordTwo: "Senhas não coincidem"
+  }
+
+  registration(){
+
+    const user: RegisterDTO = {
+      name:     this.registerForm.controls.username.value as string,
+      email:    this.registerForm.controls.email.value as string,
+      password: this.registerForm.controls.email.value as string,
+    }
+    
+    this.authService.register(user)
+    .pipe(take(1))
+    .subscribe(
+      {
+        next: (cred) => { this.router.navigate(['/open']); },
+        error: (err) => { console.log("Erro ao registrar, ", err); }
+      }
+    )
   }
 }

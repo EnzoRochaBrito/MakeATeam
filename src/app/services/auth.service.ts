@@ -3,9 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, User } from '@angular/fire/auth';
 import { from, switchMap } from 'rxjs';
 import { LoginDTO, RegisterDTO } from '../utils/auth.dto';
-import { doc, setDoc } from '@angular/fire/firestore';
-import { Firestore } from '@angular/fire/firestore/lite';
-import { getDoc } from 'firebase/firestore';
+import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore'; // Corrigido
 import { UserProfileDTO } from '../utils/user.dto';
 
 @Injectable({

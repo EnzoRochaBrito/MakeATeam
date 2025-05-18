@@ -1,6 +1,6 @@
 <div class="big-gradient"></div>
 <app-auth [title]="title">
-    <form class="credentials mx-auto m-3 text-center" action="" [formGroup]="registerForm">
+    <form class="credentials mx-auto m-3 text-center" [formGroup]="registerForm" (ngSubmit)="registration()">
         <div class="text-start">
             <div class="input-info d-flex flex-row justify-content-between w-100">
                 <p class="mb-0">Username</p>

@@ -1,4 +1,5 @@
 export const environment = {
+    
     firebaseConfig: {
       apiKey: 'API_KEY',
       authDomain: 'AUTH_DOMAIN',
