@@ -41,7 +41,7 @@ export class RegisterComponent {
     const user: RegisterDTO = {
       name:     this.registerForm.controls.username.value as string,
       email:    this.registerForm.controls.email.value as string,
-      password: this.registerForm.controls.email.value as string,
+      password: this.registerForm.controls.passwordOne.value as string,
     }
     
     this.authService.register(user)
