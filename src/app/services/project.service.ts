@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { collection, doc, Firestore, getDocs, limit, orderBy, query, setDoc, Timestamp, where } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { CreateProjectDTO } from '../utils/dto/create.project.dto';
-import { ProjectType } from '../utils/type/project.type';
+import { ProjectType, ProjectTypeUid } from '../utils/type/project.type';
 
 @Injectable({
   providedIn: 'root'
@@ -23,26 +23,39 @@ export class ProjectService {
 
     return await setDoc(projectRef, {
       ...project,
-      createdAt: Timestamp.now(),
+      createdAt: Date.now(),
       userRef: userRef
     })
   } 
 
-  public async searchProject(experience: string, category: string): Promise<ProjectType[]> {
-    
+  public async searchProject(experience: string = '*', category: string = '*'): Promise<ProjectTypeUid[]> {
+  
     const projectRef = collection(this.firestore, 'project');
-    const q = query(
+
+    let q = query(
       projectRef,
-      where('category', '==', category),
-      where('experience', 'in', experience),
       orderBy('createdAt', 'desc'),
       limit(15)
     );
-
-    const querySnapchot = await getDocs(q);
-    const posts = querySnapchot.docs.map(doc => doc.data() as ProjectType)
-    return posts
+  
+    if (category !== '*') {
+      q = query(q, where('category', '==', category));
+    }
+  
+    if (experience !== '*') {
+      q = query(q, where('experience', 'array-contains', experience));
+    }
+  
+    const querySnapshot = await getDocs(q);
+  
+    const posts = querySnapshot.docs.map(doc => ({
+      uid: doc.id,
+      ...doc.data() as ProjectType
+    }));
+  
+    return posts;
   }
+  
   
 
 }

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 
@@ -10,11 +10,10 @@ import { Timestamp } from '@angular/fire/firestore';
 })
 export class ProjectCardComponent {
   @Input() title!: string;
-  @Input() image!: string;
   @Input() description!: string;
   @Input() tags!: string[];
-  @Input() members!: number;
-  @Input() timeAgo!: Timestamp;
+  @Input() vacancyAmount!: number;
+  @Input() createdAt!: Date;
   @Input() id!: number;
 
 }

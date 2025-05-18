@@ -38,12 +38,12 @@
     </section>
 
     <section class="projects-grid d-grid p-4">
-        <project-card *ngFor="let project of projectArr; track pj"
+        <project-card *ngFor="let project of projectArr"
         [title]="project.name"
         [description]="project.description"
         [tags]="project.technologies"
-        [timeAgo]="project.createdAt"
-        [members]="project.vancancy"
+        [createdAt]="project.createdAt"
+        [vacancyAmount]="project.vancancy"
         ></project-card>
 
     </section>

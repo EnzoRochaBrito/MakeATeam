@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StandartComponent } from '../../template/standart/standart.component';
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
 import { FormsModule, NgModel } from '@angular/forms';
-import { ProjectType } from '../../utils/type/project.type';
+import { ProjectType, ProjectTypeUid } from '../../utils/type/project.type';
 import { ProjectService } from '../../services/project.service';
 import { CommonModule } from '@angular/common';
 
@@ -19,14 +19,14 @@ export class OpenProjectsComponent implements OnInit {
   
   experience: string = '*';
   category:   string = '*';
-  projectArr: ProjectType[] = [];
+  projectArr: ProjectTypeUid[] = [];
 
   filterSearch(){
 
   }
 
   async ngOnInit(): Promise<void> {
-    // this.projectArr = await this.projectService.searchProject('*', '*')
+    this.projectArr = await this.projectService.searchProject();
   }
   
 

@@ -3,7 +3,7 @@ import { StandartComponent } from '../../template/standart/standart.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomInputFormComponent } from '../../components/custom-input-form/custom-input-form.component';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ProjectService } from '../../services/project.service';
 import { CreateProjectDTO } from '../../utils/dto/create.project.dto';
@@ -22,7 +22,7 @@ export class CreateProjectComponent {
   techArr: string[] = [];
   expArr: string[] = [];
 
-  constructor(readonly authService: AuthService, readonly projectService: ProjectService) {}
+  constructor(readonly authService: AuthService, readonly projectService: ProjectService, readonly route: Router) {}
 
   createProjectForm = new FormGroup({
     name:          new FormControl('',   [Validators.required]),
@@ -93,6 +93,7 @@ export class CreateProjectComponent {
       vancancy: Number(this.createProjectForm.controls.vacancy.value)
     }
 
-    this.projectService.createProject(post)
+    await this.projectService.createProject(post)
+    this.route.navigate(['/open'])
   }
 }
