@@ -20,14 +20,14 @@
                 <p class="mb-0">Senha</p>
                 <p class="mb-0 text-danger" *ngIf="registerForm.controls['passwordOne'].touched && registerForm.controls['passwordOne'].invalid">{{controlWarn.passwordOne}}</p>
             </div>
-            <custom-auth-input class="m-2" placeholder="Insira a sua senha" inputType="email" [control]="registerForm.controls['passwordOne']" icon="./login/key.svg"></custom-auth-input>
+            <custom-auth-input class="m-2" placeholder="Insira a sua senha" inputType="password" [control]="registerForm.controls['passwordOne']" icon="./login/key.svg"></custom-auth-input>
         </div>
         <div class="text-start">
             <div class="input-info d-flex flex-row justify-content-between w-100">
                 <p class="mb-0">Repetir Senha</p>
                 <p class="mb-0 text-danger" *ngIf="registerForm.controls['passwordTwo'].touched && registerForm.controls['passwordTwo'].invalid">{{controlWarn.passwordTwo}}</p>
             </div>
-            <custom-auth-input class="m-2" placeholder="Repita a sua senha" inputType="email" [control]="registerForm.controls['passwordTwo']" icon="./login/key2.svg"></custom-auth-input>
+            <custom-auth-input class="m-2" placeholder="Repita a sua senha" inputType="password" [control]="registerForm.controls['passwordTwo']" icon="./login/key2.svg"></custom-auth-input>
         </div>
         <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="registerForm.invalid">Cadastrar</button>
     </form>
