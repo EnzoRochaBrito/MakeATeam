@@ -5,7 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { LoginDTO } from '../../utils/auth.dto';
+import { LoginDTO } from '../../utils/dto/auth.dto';
 import { take } from 'rxjs';
 
 @Component({

@@ -10,51 +10,41 @@
         </div>
         <div class="filter-search px-4 shadow-sm d-flex flex-row justify-content-between align-items-center p-2 gap-3">
             <div class="filter-opt d-flex gap-2 align-items-center">
-                <select name="" id="" class="form-select">
-                    <option value="">Todos os níveis</option>
-                    <option value="">Júnior</option>
-                    <option value="">Pleno</option>
-                    <option value="">Sênior</option>
+                <select [(ngModel)]="experience" name="" id="" class="form-select">
+                    <option value="*">Todos os níveis</option>
+                    <option value="Iniciante">Iniciante</option>
+                    <option value="Intermediário">Intermediário</option>
+                    <option value="Avançado">Avançado</option>
                 </select>
-                <select name="" id="" class="form-select">
-                    <option value="">Todos os tipos</option>
-                    <option value="">Comercial</option>
-                    <option value="">Open Source</option>
-                    <option value="">Estudo</option>
+                <select [(ngModel)]="category" name="" id="" class="form-select">
+                    <option value="*">Todos os tipos</option>
+                    <option value="0">Desenvolvimento Web</option>
+                    <option value="1">Desenvolvimento Mobile</option>
+                    <option value="2">Inteligência Artificial</option>
+                    <option value="3">Desenvolvimento de Jogos</option>
+                    <option value="4">IoT</option>
+                    <option value="5">Outros</option>
                 </select>
+                <button class="btn btn-primary filter-btn" (click)="filterSearch()">Filtrar</button>
             </div>
             <div class="sorting d-flex flex-row gap-2 align-items-center w-auto">
                 <p class="mb-0 d-none d-md-block">Ordernar por: </p>
                 <select name="" id="" class="form-select">
-                    <option value="">Mais recente</option>
-                    <option value="">Mais populares</option>
-                    <option value="">Mais avaliados</option>
+                    <option value="0">Mais recente</option>
+                    <option value="1">Mais antigo</option>
                 </select>
             </div>
         </div>
     </section>
 
     <section class="projects-grid d-grid p-4">
-        <project-card
-        title="Plataforma de Aprendizado"
-        description="Plataforma educacional com cursos interativos sobre desenvolvimento web"
-        [tags]="tags"
-        members="5"
-        timeAgo="2 semanas atrás"
+        <project-card *ngFor="let project of projectArr; track pj"
+        [title]="project.name"
+        [description]="project.description"
+        [tags]="project.technologies"
+        [timeAgo]="project.createdAt"
+        [members]="project.vancancy"
         ></project-card>
-        <project-card
-        title="Plataforma de Aprendizado"
-        description="Plataforma educacional com cursos interativos sobre desenvolvimento web"
-        [tags]="tags"
-        members="5"
-        timeAgo="2 semanas atrás"
-        ></project-card>
-        <project-card
-        title="Plataforma de Aprendizado"
-        description="Plataforma educacional com cursos interativos sobre desenvolvimento web"
-        [tags]="tags"
-        members="5"
-        timeAgo="2 semanas atrás"
-        ></project-card>
+
     </section>
 </app-standart>

@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormControlName, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { InputTypes } from '../../utils/inputTypes';
+import { InputTypes } from '../../utils/type/input.types';
 
 @Component({
   selector: 'custom-auth-input',

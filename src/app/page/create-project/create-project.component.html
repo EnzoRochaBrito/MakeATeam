@@ -8,7 +8,7 @@
                 <hr>
             </div>
             <div class="project-form px-4">
-                <form action="" [formGroup]="createProjectForm" class="d-flex flex-column gap-3" (ngSubmit)="submitProject($event)">
+                <form action="" [formGroup]="createProjectForm" class="d-flex flex-column gap-3" (ngSubmit)="postProject()">
                     
                     <custom-input-form
                     name="Nome do projeto*"

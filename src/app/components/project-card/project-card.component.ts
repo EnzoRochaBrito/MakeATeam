@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'project-card',
@@ -12,8 +13,8 @@ export class ProjectCardComponent {
   @Input() image!: string;
   @Input() description!: string;
   @Input() tags!: string[];
-  @Input() members!: string;
-  @Input() timeAgo!: string;
+  @Input() members!: number;
+  @Input() timeAgo!: Timestamp;
   @Input() id!: number;
 
 }

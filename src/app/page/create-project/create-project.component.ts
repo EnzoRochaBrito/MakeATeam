@@ -4,6 +4,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CustomInputFormComponent } from '../../components/custom-input-form/custom-input-form.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { ProjectService } from '../../services/project.service';
+import { CreateProjectDTO } from '../../utils/dto/create.project.dto';
+import { RequiredTech } from '../../validators/required-project-tech.validator';
+import { RequiredExp } from '../../validators/required-project-exp.validator';
 
 
 @Component({
@@ -13,29 +18,25 @@ import { RouterLink } from '@angular/router';
   styleUrl: './create-project.component.css'
 })
 export class CreateProjectComponent {
+  
+  techArr: string[] = [];
+  expArr: string[] = [];
+
+  constructor(readonly authService: AuthService, readonly projectService: ProjectService) {}
 
   createProjectForm = new FormGroup({
-    name:          new FormControl('', [Validators.required]),
-    description:   new FormControl('', [Validators.required]),
-    category:      new FormControl('', [Validators.required]),
+    name:          new FormControl('',   [Validators.required]),
+    description:   new FormControl('',   [Validators.required]),
+    category:      new FormControl('',   [Validators.required, Validators.min(1)]),
     experience:    new FormControl(''),
     technologies:  new FormControl(''),
-    startDate:     new FormControl(null, [Validators.required]),
-    estimatedTime: new FormControl(''),
-    vacancy:       new FormControl('', [Validators.required]),
+    startDate:     new FormControl('',   [Validators.required]),
+    estimatedTime: new FormControl('',   [Validators.min(1)]),
+    vacancy:       new FormControl('',   [Validators.required, Validators.min(1)]),
     repository:    new FormControl('')
-  });
-
-  submitProject(event: Event) {
-    console.log(this.createProjectForm.controls.name.value)
-    console.log(this.createProjectForm.controls.description.value)
-    console.log(this.createProjectForm.controls.category.value)
-    console.log(this.createProjectForm.controls.experience.value)
-    console.log(this.createProjectForm.controls.technologies.value)
-    console.log(this.createProjectForm.controls.startDate.value)
-    console.log(this.createProjectForm.controls.estimatedTime.value)
-    console.log(this.createProjectForm.controls.repository.value)
-  }
+  },
+  [RequiredTech.requiredTech(this.techArr), RequiredExp.requiredExp(this.expArr)] 
+);
 
   projectCategory = [
     'Desenvolvimento Web',
@@ -52,8 +53,6 @@ export class CreateProjectComponent {
     'Avançado'
   ];
 
-  techArr: string[] = [];
-  expArr: string[] = [];
 
   removeTag(index: number){
     this.techArr.splice(index, 1);
@@ -78,5 +77,22 @@ export class CreateProjectComponent {
     
     this.expArr.push(this.experienceLevel[ value ]);
     this.experienceLevel.splice(value, 1);
+  }
+
+  async postProject(){
+
+    const post: CreateProjectDTO = {
+      name: this.createProjectForm.controls.name.value as string,
+      description: this.createProjectForm.controls.description.value as string,
+      category: Number(this.createProjectForm.controls.category.value),
+      estimtedTime: Number(this.createProjectForm.controls.estimatedTime.value),
+      experience: this.expArr,
+      repository: this.createProjectForm.controls.repository.value as string,
+      startDate: this.createProjectForm.controls.startDate.value as string,
+      technologies: this.techArr,
+      vancancy: Number(this.createProjectForm.controls.vacancy.value)
+    }
+
+    this.projectService.createProject(post)
   }
 }

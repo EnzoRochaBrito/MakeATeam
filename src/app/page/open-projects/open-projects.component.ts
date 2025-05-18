@@ -1,13 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StandartComponent } from '../../template/standart/standart.component';
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
+import { FormsModule, NgModel } from '@angular/forms';
+import { ProjectType } from '../../utils/type/project.type';
+import { ProjectService } from '../../services/project.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-open-projects',
-  imports: [StandartComponent, ProjectCardComponent],
+  imports: [StandartComponent, ProjectCardComponent, FormsModule, CommonModule],
   templateUrl: './open-projects.component.html',
   styleUrl: './open-projects.component.css'
 })
-export class OpenProjectsComponent {
+export class OpenProjectsComponent implements OnInit {
   tags = ['React', 'Node', 'Typescript', 'Typescript','Typescript']
+
+  constructor(private readonly projectService: ProjectService) { }
+  
+  experience: string = '*';
+  category:   string = '*';
+  projectArr: ProjectType[] = [];
+
+  filterSearch(){
+
+  }
+
+  async ngOnInit(): Promise<void> {
+    // this.projectArr = await this.projectService.searchProject('*', '*')
+  }
+  
+
 }

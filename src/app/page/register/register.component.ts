@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { EqualPasswordValidator } from '../../validators/equal-password.validator';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { RegisterDTO } from '../../utils/auth.dto';
+import { RegisterDTO } from '../../utils/dto/auth.dto';
 import { take } from 'rxjs';
 
 @Component({

@@ -2,9 +2,9 @@ import { inject, Injectable, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, User } from '@angular/fire/auth';
 import { from, switchMap } from 'rxjs';
-import { LoginDTO, RegisterDTO } from '../utils/auth.dto';
-import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
-import { UserProfileDTO } from '../utils/user.dto';
+import { LoginDTO, RegisterDTO } from '../utils/dto/auth.dto';
+import { Firestore, doc, setDoc, getDoc, Timestamp } from '@angular/fire/firestore';
+import { UserProfileDTO } from '../utils/dto/user.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { UserProfileDTO } from '../utils/user.dto';
 export class AuthService {
 
   readonly auth: Auth = inject(Auth)
-  private firestore = inject(Firestore)
+  private  firestore = inject(Firestore)
   readonly currentUser = signal<User | null>(null); 
   readonly isLogged = signal(false);
 
@@ -34,10 +34,10 @@ export class AuthService {
         await setDoc(profile, {
           name: user.name,
           email: user.email,
-          createdAt: Date.now(),
+          createdAt: Timestamp.now(),
           uid: cred.user.uid
         });
-        
+
         return cred
       })
     );
