@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { isLoggedGuard } from './guards/is-logged.guard';
 
 export const routes: Routes = [
     {
@@ -19,7 +20,8 @@ export const routes: Routes = [
     },
     {
         path: "create",
-        loadComponent: () => import('./page/create-project/create-project.component').then(m => m.CreateProjectComponent)
+        loadComponent: () => import('./page/create-project/create-project.component').then(m => m.CreateProjectComponent),
+        canActivate: [isLoggedGuard]
     },
     {
         path: "**",
