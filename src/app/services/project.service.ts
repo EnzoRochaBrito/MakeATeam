@@ -12,10 +12,14 @@ export class ProjectService {
 
   
   firestore = inject(Firestore)
-  userUid: string;
+  userUid!: string;
 
   constructor(private authService: AuthService, readonly userService: UserServiceService) {
-    this.userUid = JSON.parse(sessionStorage.getItem('profile')!).uid;
+    try {
+      this.userUid = JSON.parse(sessionStorage.getItem('profile') as string).uid
+    } catch(error) {
+      console.log("usuário não está logado");
+    }
   }
 
   public async createProject(project: CreateProjectDTO){

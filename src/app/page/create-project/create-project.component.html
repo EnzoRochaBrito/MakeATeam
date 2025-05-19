@@ -26,6 +26,7 @@
             </div>
             <textarea formControlName="description" class="form-control w-100 p-2" placeholder="Descreva seu projeto com detalhes: objetivos, funcionalidades, etc..."></textarea>
           </div>
+          <div class="row">
           <div class="col-12 col-md-6 mb-3 mb-md-0 text-start">
             <div class="description">
               <div class="input-info d-flex flex-row justify-content-between w-100">
@@ -52,6 +53,7 @@
                 <p class="tag" *ngFor="let tag of expArr; let i = index">{{ tag }} <span class="remove-tag" (click)="removeEx(i)">x</span></p>
               </div>
             </div>
+          </div>
           </div>
           <div class="necessary-tech text-start">
             <div class="input-info d-flex flex-row justify-content-between w-100">
