@@ -1,0 +1,58 @@
+.project-wrapper{
+    width: 60vw;
+    min-width: 800px;
+    @media screen and (max-width: 1200px) {
+        min-width: 0;
+        width: 100vw;
+    }
+}
+
+.project{
+    border-radius: .5rem;
+}
+
+.project-info{
+    color: var(--bs-gray);
+    h2 {
+        font-size: 1rem;
+    }
+}
+
+.detail-cell {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
+}
+
+.experience-tags {
+    span {
+        transition: transform .2s;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 1rem;
+        &:hover{
+            transform: translateY(-2px);
+        }
+    }
+
+    #iniciante {
+        border-color: var(--bs-green);
+        color: var(--bs-green);
+    }
+
+    #intermediario {
+        border-color: var(--bs-yellow);
+        color: var(--bs-yellow);
+    }
+
+    #avancado {
+        border-color: var(--bs-purple);
+        color: var(--bs-purple);
+    }
+}
+
+.project-actions .btn {
+    transition: scale .2s;
+    &:hover{
+        scale: .99;
+    }
+}

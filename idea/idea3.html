@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Aprendizado - MakeATeam</title>
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --light-blue: #e8f0fe;
+            --dark-blue: #0d47a1;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --border-color: #dadce0;
+            --success-green: #34a853;
+            --warning-orange: #f9ab00;
+            --error-red: #ea4335;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: #333;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        nav a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        
+        .project-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+        
+        .project-main {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        
+        .project-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-title {
+            color: var(--primary-blue);
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #666;
+            margin: 0.5rem 0 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 300px;
+            background-color: var(--light-blue);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .project-description {
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .project-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-card {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        .detail-card h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .detail-card p {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tag {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .experience-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .experience-tag {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .beginner {
+            background-color: #e6f4ea;
+            color: var(--success-green);
+        }
+        
+        .intermediate {
+            background-color: #fef7e0;
+            color: var(--warning-orange);
+        }
+        
+        .advanced {
+            background-color: #fce8e6;
+            color: var(--error-red);
+        }
+        
+        .sidebar-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+        }
+        
+        .sidebar-card h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+        }
+        
+        .creator-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .creator-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+        
+        .creator-name {
+            font-weight: 500;
+        }
+        
+        .creator-contact {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+        }
+        
+        .btn-secondary {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            color: #555;
+            width: 100%;
+        }
+        
+        .vacancy-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .vacancy-count {
+            font-weight: 500;
+        }
+        
+        .vacancy-available {
+            color: var(--success-green);
+        }
+        
+        .vacancy-full {
+            color: var(--error-red);
+        }
+        
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">MakeATeam</div>
+        <nav>
+            <a href="#">Início</a>
+            <a href="#" class="active">Encontrar Projetos</a>
+            <a href="#">Meus Projetos</a>
+            <a href="#">Perfil</a>
+        </nav>
+    </header>
+    
+    <div class="project-container">
+        <div class="project-main">
+            <div class="project-header">
+                <div>
+                    <h1 class="project-title">Plataforma de Aprendizado Online</h1>
+                    <div class="project-meta">
+                        <span>Criado em: 15/10/2023</span>
+                        <span>•</span>
+                        <span>Web Development</span>
+                    </div>
+                </div>
+                <div class="vacancy-count">
+                    <span class="vacancy-available">3 vagas disponíveis</span>
+                </div>
+            </div>
+            
+            <div class="project-image">
+                <img src="https://via.placeholder.com/800x400" alt="Plataforma de Aprendizado">
+            </div>
+            
+            <div class="project-description">
+                <p>Plataforma educacional com cursos interativos sobre desenvolvimento web. O objetivo é criar um ambiente onde desenvolvedores possam aprender novas tecnologias através de projetos práticos e colaborativos.</p>
+                <p>O projeto inclui sistema de autenticação, painel de administração, player de vídeo interativo e sistema de avaliação por pares. Estamos buscando desenvolvedores com experiência em frontend e backend para ajudar a construir as funcionalidades principais.</p>
+            </div>
+            
+            <h2 class="section-title">Detalhes do Projeto</h2>
+            <div class="project-details">
+                <div class="detail-card">
+                    <h3>Data de Início</h3>
+                    <p>01/11/2023</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Duração Estimada</h3>
+                    <p>12 semanas</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Pessoas no Projeto</h3>
+                    <p>2 de 5</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Repositório</h3>
+                    <p><a href="https://github.com/example/learning-platform" target="_blank">github.com/example/learning-platform</a></p>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Tecnologias Utilizadas</h2>
+            <div class="tech-tags">
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">MongoDB</span>
+                <span class="tag">Express</span>
+                <span class="tag">AWS</span>
+                <span class="tag">Docker</span>
+            </div>
+            
+            <h2 class="section-title">Nível de Experiência</h2>
+            <div class="experience-tags">
+                <span class="experience-tag beginner">Iniciante</span>
+                <span class="experience-tag intermediate">Intermediário</span>
+            </div>
+            
+            <div class="project-actions">
+                <button class="btn btn-secondary">Salvar Projeto</button>
+                <button class="btn btn-primary">Participar do Projeto</button>
+            </div>
+        </div>
+        
+        <div class="project-sidebar">
+            <div class="sidebar-card">
+                <h2>Sobre o Criador</h2>
+                <div class="creator-info">
+                    <div class="creator-avatar">JD</div>
+                    <div>
+                        <div class="creator-name">João da Silva</div>
+                        <div class="creator-contact">joao@example.com</div>
+                    </div>
+                </div>
+                <p>Desenvolvedor full-stack com 5 anos de experiência, especializado em JavaScript e arquitetura de sistemas educacionais.</p>
+            </div>
+            
+            <div class="sidebar-card">
+                <h2>Participe do Projeto</h2>
+                <div class="vacancy-info">
+                    <span>Vagas disponíveis:</span>
+                    <span class="vacancy-count vacancy-available">3</span>
+                </div>
+                <a href="#" class="btn btn-primary">Enviar Solicitação</a>
+                <a href="#" class="btn btn-secondary">Enviar Mensagem</a>
+            </div>
+            
+            <div class="sidebar-card">
+                <h2>Membros do Time</h2>
+                <div class="creator-info">
+                    <div class="creator-avatar">JD</div>
+                    <div>
+                        <div class="creator-name">João da Silva</div>
+                        <div class="creator-contact">Criador</div>
+                    </div>
+                </div>
+                <div class="creator-info">
+                    <div class="creator-avatar">AM</div>
+                    <div>
+                        <div class="creator-name">Ana Maria</div>
+                        <div class="creator-contact">Frontend Developer</div>
+                    </div>
+                </div>
+                <div class="creator-info">
+                    <div class="creator-avatar">PS</div>
+                    <div>
+                        <div class="creator-name">Pedro Souza</div>
+                        <div class="creator-contact">Backend Developer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 MakeATeam - Conectando desenvolvedores para projetos incríveis</p>
+        <p>Termos de Uso | Política de Privacidade | Contato</p>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDocs, limit, orderBy, OrderByDirection, query, setDoc, Timestamp, where } from '@angular/fire/firestore';
+import { collection, doc, Firestore, getDoc, getDocs, limit, orderBy, OrderByDirection, query, setDoc, Timestamp, where } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { CreateProjectDTO } from '../utils/dto/create.project.dto';
 import { ProjectType, ProjectTypeUid } from '../utils/type/project.type';
@@ -64,13 +64,21 @@ export class ProjectService {
     return posts;
   }
 
-  public async getProjectByUid(uid: string){
-    const projectRef = collection(this.firestore, 'project', uid);
-    let q = query(projectRef);
-    const querySnapshot = await getDocs(q);
-    const project = querySnapshot.docs[0].data() as ProjectTypeUid
-    return project;
+  public async getProjectByUid(uid: string): Promise<ProjectTypeUid | null> {
+    const projectRef = doc(this.firestore, 'project', uid);
+    const docSnap = await getDoc(projectRef);
+  
+    if (docSnap.exists()) {
+      return {
+        uid: docSnap.id,
+        ...docSnap.data()
+      } as ProjectTypeUid;
+    } else {
+      return null;
+    }
   }
+
+  
   
   
 

@@ -24,6 +24,10 @@ export const routes: Routes = [
         canActivate: [isLoggedGuard]
     },
     {
+        path: "project/:uid",
+        loadComponent: () => import('./page/project/project.component').then(m => m.ProjectComponent)
+    },
+    {
         path: "**",
         redirectTo: "landing",
         pathMatch: 'full'

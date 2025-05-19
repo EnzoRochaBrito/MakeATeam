@@ -41,7 +41,7 @@
                                     <option *ngFor="let eL of experienceLevel; let i = index" [value]="i">{{eL}}</option>
                                 </select>
                                 <div class="tags p-0 d-flex flex-row align-items-center gap-2 overflow-x-auto mb-1">
-                                    <p class="tag mb-0 px-1" *ngFor="let tag of expArr; let i = index">{{tag}} <span class="remove-tag" (click)="removeEx(i)">x</span></p>
+                                    <p class="tag" *ngFor="let tag of expArr; let i = index">{{tag}} <span class="remove-tag" (click)="removeEx(i)">x</span></p>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                         <p class="mb-0">Tecnologias Necessárias</p>
                         <div class="form-control p-2">
                             <div class="tags p-0 d-flex flex-row align-items-center gap-2 overflow-x-auto mb-1">
-                                <p class="tag mb-0 px-1" *ngFor="let tag of techArr; let i = index">{{tag}} <span class="remove-tag" (click)="removeTag(i)">x</span></p>
+                                <p class="tag" *ngFor="let tag of techArr; let i = index">{{tag}} <span class="remove-tag" (click)="removeTag(i)">x</span></p>
                             </div>
                             <div class="add-tech d-flex flex-row">
                                 <input formControlName="technologies" type="text" class="form-control p-2">

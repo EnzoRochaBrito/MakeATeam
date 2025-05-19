@@ -38,8 +38,10 @@ body{
 
 .tag{
     color: var(--bs-primary) !important;
-    background: #0d6dfd25;
-    border-radius: 5px;
+    background: #478ef825;
+    border-radius: 2rem;
+    padding: .25rem .5rem;
+    margin-bottom: 0;
 }
 
 .tags{
