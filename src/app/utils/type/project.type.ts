@@ -10,10 +10,12 @@ export interface ProjectType {
     estimtedTime: number
     vancancy: number
     repository: string
-    createdAt: Date
+    createdAt: number
     userRef: string
+    creator: string
 }
 
 export interface ProjectTypeUid extends ProjectType {
     uid: string
+    creator: string
 }

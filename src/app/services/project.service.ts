@@ -24,7 +24,8 @@ export class ProjectService {
     return await setDoc(projectRef, {
       ...project,
       createdAt: Date.now(),
-      userRef: userRef
+      userRef: userRef,
+      creator: this.authService.currentUser()?.displayName
     })
   } 
 

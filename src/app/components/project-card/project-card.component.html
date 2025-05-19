@@ -1,7 +1,8 @@
 <div class="project-card shadow">
     <div class="project-body p-4">
-        <h5 class="title mb-4">{{title}}</h5>
-        <div class="description"><p class="mb-0">{{description}}</p></div>
+        <h5 class="title mb-1">{{title}}</h5>
+        <h5 class="creator mb-2">{{creator}}Enzo Rocha</h5>
+        <div class="description mb-2"><p class="mb-0 d-inline">{{description}}</p></div>
         <div class="tags p-0 d-flex flex-row align-items-center gap-2 overflow-x-auto">
             <p class="tag m-0 mb-1 px-1" *ngFor="let tag of tags">{{tag}}</p>
         </div>

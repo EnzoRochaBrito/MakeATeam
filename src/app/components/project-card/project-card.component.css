@@ -25,11 +25,17 @@
 
 
 .description{
-    height: 50px;
+    max-height: 90px;
+    height: max-content;
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
     p {
         text-wrap: wrap;
     }
+}
+
+.creator{
+    color: var(--bs-gray);
+    font-size: 1rem;
 }

@@ -4,7 +4,7 @@ import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'project-card',
-  imports: [CommonModule],
+  imports: [CommonModule, DatePipe],
   templateUrl: './project-card.component.html',
   styleUrl: './project-card.component.css'
 })
@@ -13,7 +13,8 @@ export class ProjectCardComponent {
   @Input() description!: string;
   @Input() tags!: string[];
   @Input() vacancyAmount!: number;
-  @Input() createdAt!: Date;
+  @Input() createdAt!: number;
   @Input() id!: number;
+  @Input() creator!: string;
 
 }
