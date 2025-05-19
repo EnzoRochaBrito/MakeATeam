@@ -20,6 +20,7 @@ export class ProjectComponent implements OnInit {
   projectBody!: ProjectTypeUid;
   creatorId!: string;
   canAcess: boolean = true;
+  currentUserUid!: string;
 
   categoryMap = [
     'Desenvolvimento Web',
@@ -35,22 +36,21 @@ export class ProjectComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.uid = this.route.snapshot.paramMap.get('uid')!;
+    
     // this.projectBody = await this.projectService.getProjectByUid(this.uid) as ProjectTypeUid;
-
+    // localStorage.setItem('project', JSON.stringify(this.projectBody))
     this.projectBody = JSON.parse(localStorage.getItem('project')!) as ProjectTypeUid
 
     this.creatorId = this.projectBody.userRef._key.path.segments[6] as string
     
-    const currentUserId = '' 
-    // this.authSerice.currentUser()?.uid;
+    this.currentUserUid = JSON.parse(localStorage.getItem('profile')!).uid as string
 
-    if ((this.creatorId == currentUserId)) {
+    console.log(this.currentUserUid)
+
+    if ((this.creatorId == this.currentUserUid)) {
       this.canAcess = false;
     }
 
-    console.log(currentUserId);
-    console.log(this.creatorId);
-    console.log(this.projectBody);
   }
 
   async saveProject(){
@@ -58,7 +58,8 @@ export class ProjectComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    await this.userService.saveProject(this.uid)
+    console.log(this.uid)
+    await this.userService.saveProject(this.uid, this.currentUserUid)
     return
   }
 

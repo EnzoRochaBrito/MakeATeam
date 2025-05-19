@@ -15,7 +15,7 @@ export class ProjectService {
   userUid: string;
 
   constructor(private authService: AuthService, readonly userService: UserServiceService) {
-    this.userUid = this.authService.currentUser()?.uid as string;
+    this.userUid = JSON.parse(sessionStorage.getItem('profile')!).uid;
   }
 
   public async createProject(project: CreateProjectDTO){

@@ -81,9 +81,6 @@ export class CreateProjectComponent {
     
     this.expArr.push(this.experienceLevel[ value ]);
     this.experienceLevel.splice(value, 1);
-
-    console.log("expArr: ",this.expArr);
-    console.log("experienceLevel: ",this.experienceLevel);
   }
 
   async postProject(){

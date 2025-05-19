@@ -3,7 +3,7 @@
     <div class="project-wrapper mx-auto p-md-3 p-0 mb-md-2 mb-0">
         <div class="project bg-white px-2 py-4 shadow-sm position-relative">
             <p class="available mb-0 text-success position-absolute top-0 end-0 m-3">3 vagas disponíveis</p>
-            <h1 class="title text-primary fw-bold fs-3 mt-md-0 mt-4">
+            <h1 *ngIf="projectBody.name" class="title text-primary fw-bold fs-3 mt-md-0 mt-4">
                 {{projectBody.name}}
             </h1>
             <div class="project-info d-flex flex-row justify-content-between">

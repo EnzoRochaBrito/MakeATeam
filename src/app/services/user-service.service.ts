@@ -1,17 +1,18 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, OnInit } from '@angular/core';
 import { arrayRemove, arrayUnion, collection, doc, Firestore, getDoc, query, setDoc, updateDoc } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserServiceService {
+export class UserServiceService implements OnInit {
 
   firestore = inject(Firestore)
+  authService = inject(AuthService)
   userUid!: string;
 
-  constructor(private authService: AuthService) {
-      this.userUid = sessionStorage.getItem("uid") || this.authService.currentUser()?.uid as string;
+  ngOnInit(): void {
+    this.userUid = JSON.parse(sessionStorage.getItem('profile')!).uid;
   }
 
   async getUser(userUid: string){
@@ -42,9 +43,10 @@ export class UserServiceService {
     return
   }
 
-  async saveProject(projectUid: string){
-    const projectRef = doc(this.firestore, 'project', projectUid);
-    const userRef    = doc(this.firestore, 'user', this.userUid);
+  async saveProject(projectUid: string, userUid: string){
+    
+    const projectRef = doc(this.firestore, 'project', projectUid);    
+    const userRef    = doc(this.firestore, 'user', userUid);
     await updateDoc(userRef, {
       savedProjects: arrayUnion(projectRef.id)
     })

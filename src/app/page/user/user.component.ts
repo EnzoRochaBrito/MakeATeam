@@ -19,9 +19,8 @@ export class UserComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.uid = this.route.snapshot.paramMap.get('uid')!;
-    // this.userProfile = await this.userService.getUser(this.uid) as IUserProfile;
-    // localStorage.setItem("profile", JSON.stringify(this.userProfile))
-    this.userProfile = JSON.parse(localStorage.getItem("profile")!) as IUserProfile
+    this.userProfile = await this.userService.getUser(this.uid) as IUserProfile;
+    localStorage.setItem("profile", JSON.stringify(this.userProfile))
     console.log(this.userProfile)
   }
 }
