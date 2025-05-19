@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDoc, getDocs, limit, orderBy, OrderByDirection, query, setDoc, Timestamp, where } from '@angular/fire/firestore';
+import { arrayRemove, arrayUnion, collection, doc, Firestore, getDoc, getDocs, limit, orderBy, OrderByDirection, query, setDoc, Timestamp, updateDoc, where } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { CreateProjectDTO } from '../utils/dto/create.project.dto';
 import { ProjectType, ProjectTypeUid } from '../utils/type/project.type';
@@ -81,10 +81,14 @@ export class ProjectService {
     } else {
       return null;
     }
+
   }
+  
+  public async sendMemberRequest(projectUid: string){
+    const projectRef = doc(this.firestore, 'project', projectUid);
 
-  
-  
-  
-
+    await updateDoc(projectRef, {
+    memberRequest: arrayUnion(this.userUid)
+    });
+  }
 }

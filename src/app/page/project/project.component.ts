@@ -56,11 +56,18 @@ export class ProjectComponent implements OnInit {
   async saveProject(){
     if (!this.authSerice.isLogged()){
       this.router.navigate(['/login']);
-      return false;
+      return;
     }
-
     await this.userService.saveProject(this.uid)
     return
+  }
+
+  async memberResquest(){
+    if (!this.authSerice.isLogged()){
+      this.router.navigate(['/login']);
+      return;
+    }
+    await this.projectService.sendMemberRequest(this.uid);
   }
   
 
