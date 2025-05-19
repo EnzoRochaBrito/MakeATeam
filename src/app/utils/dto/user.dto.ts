@@ -3,5 +3,13 @@ export interface UserProfileDTO {
     name: string,
     email: string,
     createdAt: Date,
-    savedProjects: Object[]
+    savedProjects: string[]
+    projectsOwned: string[]
+    memberOf: string[]
+}
+
+export interface IUserProfile extends UserProfileDTO {
+    description?: string
+    stack?: string[]
+    country?: string
 }

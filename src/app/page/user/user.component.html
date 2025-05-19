@@ -1,0 +1,42 @@
+<app-standart>
+    <div class="user-wrapper mx-auto p-md-3 p-0 mb-md-2 mb-0">
+        <div class="user bg-white px-2 py-4 shadow-sm">
+            <h1 class="user-name text-primary fs-3 mb-3">
+                {{userProfile.name}}
+            </h1>
+            <div class="user-description mb-4">
+                <h1 class="description-title text-primary fs-4 fw-medium mb-1">Descrição</h1>
+                <p *ngIf="userProfile.description; else no_desc" class="mb-0 mx-2">{{userProfile.description}}</p>
+                <ng-template #no_desc>Sem descrição</ng-template>
+            </div>
+            <div class="user-stack mb-4">
+                <h1 class="stack-title text-primary fs-4 fw-medium mb-1">Stack</h1>
+                <div *ngIf="userProfile.stack && userProfile.stack.length > 0; else no_stack" class="tags p-0 d-flex flex-row align-items-center gap-2 mb-4 flex-wrap">
+                    <p *ngFor="let tag of userProfile.stack" class="tag">{{tag}}</p>
+                </div>
+                <ng-template #no_stack>Sem stack</ng-template>
+            </div>
+            <div class="user-owned mb-4">
+                <h1 class="owned-title text-primary fs-4 fw-medium mb-1">Projetos</h1>
+                <div *ngIf="userProfile.projectsOwned; else no_owned" class="project-owned">
+                    <a *ngFor="let ow of userProfile.projectsOwned" [routerLink]="['/project', ow]">{{ow}}</a>
+                </div>
+                <ng-template #no_owned>Este usuário não possui projetos</ng-template>
+            </div>
+            <div class="user-memberof mb-4">
+                <h1 class="memberof-title text-primary fs-4 fw-medium mb-1">Participando</h1>
+                <div *ngIf="userProfile.memberOf; else no_memberof" class="project-memberof">
+                    <a *ngFor="let pj of userProfile.memberOf" [routerLink]="['/project', pj]">{{pj}}</a>
+                </div>
+                <ng-template #no_memberof>Nenhum projeto</ng-template>
+            </div>
+            <div class="user-saved mb-4">
+                <h1 class="saved-title text-primary fs-4 fw-medium mb-1">Salvos</h1>
+                <div *ngIf="userProfile.savedProjects; else no_saved" class="project-saved">
+                    <a *ngFor="let sav of userProfile.savedProjects" [routerLink]="['/project', sav]">{{sav}}</a>
+                </div>
+                <ng-template #no_saved>Nenhum projeto salvo</ng-template>
+            </div>
+        </div>
+    </div>
+</app-standart>

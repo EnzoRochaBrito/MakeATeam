@@ -3,6 +3,7 @@ import { collection, doc, Firestore, getDoc, getDocs, limit, orderBy, OrderByDir
 import { AuthService } from './auth.service';
 import { CreateProjectDTO } from '../utils/dto/create.project.dto';
 import { ProjectType, ProjectTypeUid } from '../utils/type/project.type';
+import { UserServiceService } from './user-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ProjectService {
   firestore = inject(Firestore)
   userUid: string;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, readonly userService: UserServiceService) {
     this.userUid = this.authService.currentUser()?.uid as string;
   }
 
@@ -22,6 +23,8 @@ export class ProjectService {
     const projectRef = doc(collection(this.firestore, 'project'));
     const userRef    = doc(this.firestore, 'user', this.userUid);
 
+    await this.userService.addOwnedProject(projectRef.id)
+    
     return await setDoc(projectRef, {
       ...project,
       createdAt: Date.now(),

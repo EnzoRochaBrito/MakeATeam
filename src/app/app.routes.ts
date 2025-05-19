@@ -28,6 +28,10 @@ export const routes: Routes = [
         loadComponent: () => import('./page/project/project.component').then(m => m.ProjectComponent)
     },
     {
+        path: "user/:uid",
+        loadComponent: () => import('./page/user/user.component').then(m => m.UserComponent)
+    },
+    {
         path: "**",
         redirectTo: "landing",
         pathMatch: 'full'
