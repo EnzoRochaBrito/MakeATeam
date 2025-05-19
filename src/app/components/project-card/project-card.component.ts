@@ -16,5 +16,6 @@ export class ProjectCardComponent {
   @Input() createdAt!: number;
   @Input() id!: number;
   @Input() creator!: string;
+  @Input() peopleIn!: number;
 
 }

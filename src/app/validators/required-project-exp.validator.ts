@@ -9,6 +9,7 @@ export class RequiredExp {
   static requiredExp(expArr: string[]): ValidatorFn {
 
     return (control: AbstractControl): ValidationErrors | null => {
+        console.log("val exparr: ",expArr)
         if (expArr.length > 0) {
             return null
         }

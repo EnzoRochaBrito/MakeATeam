@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDocs, limit, orderBy, query, setDoc, Timestamp, where } from '@angular/fire/firestore';
+import { collection, doc, Firestore, getDocs, limit, orderBy, OrderByDirection, query, setDoc, Timestamp, where } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 import { CreateProjectDTO } from '../utils/dto/create.project.dto';
 import { ProjectType, ProjectTypeUid } from '../utils/type/project.type';
@@ -29,13 +29,13 @@ export class ProjectService {
     })
   } 
 
-  public async searchProject(experience: string = '*', category: string = '*'): Promise<ProjectTypeUid[]> {
+  public async searchProject(experience: string = '*', category: string = '*', tech: string[] = [], order: OrderByDirection = 'desc'): Promise<ProjectTypeUid[]> {
   
     const projectRef = collection(this.firestore, 'project');
 
     let q = query(
       projectRef,
-      orderBy('createdAt', 'desc'),
+      orderBy('createdAt', order),
       limit(15)
     );
   
@@ -46,7 +46,11 @@ export class ProjectService {
     if (experience !== '*') {
       q = query(q, where('experience', 'array-contains', experience));
     }
-  
+
+    if (tech && (tech.length > 0) && (tech.length <= 10) && (tech[0] != "")) {
+      q = query(q, where('technologies', 'array-contains-any', tech))
+    }
+
     const querySnapshot = await getDocs(q);
   
     const posts = querySnapshot.docs.map(doc => ({

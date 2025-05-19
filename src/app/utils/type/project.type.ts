@@ -18,4 +18,5 @@ export interface ProjectType {
 export interface ProjectTypeUid extends ProjectType {
     uid: string
     creator: string
+    peopleIn: number
 }

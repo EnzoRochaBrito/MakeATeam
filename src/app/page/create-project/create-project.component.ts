@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { StandartComponent } from '../../template/standart/standart.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomInputFormComponent } from '../../components/custom-input-form/custom-input-form.component';
@@ -21,21 +21,22 @@ export class CreateProjectComponent {
   
   techArr: string[] = [];
   expArr: string[] = [];
+  route = inject(Router);
 
-  constructor(readonly authService: AuthService, readonly projectService: ProjectService, readonly route: Router) {}
+  constructor(readonly authService: AuthService, readonly projectService: ProjectService) {}
 
   createProjectForm = new FormGroup({
     name:          new FormControl('',   [Validators.required]),
     description:   new FormControl('',   [Validators.required]),
-    category:      new FormControl('',   [Validators.required, Validators.min(1)]),
+    category:      new FormControl('',   [Validators.required]),
     experience:    new FormControl(''),
     technologies:  new FormControl(''),
     startDate:     new FormControl('',   [Validators.required]),
-    estimatedTime: new FormControl('',   [Validators.min(1)]),
+    estimatedTime: new FormControl('',   [Validators.min(0)]),
     vacancy:       new FormControl('',   [Validators.required, Validators.min(1)]),
     repository:    new FormControl('')
   },
-  [RequiredTech.requiredTech(this.techArr), RequiredExp.requiredExp(this.expArr)] 
+  [RequiredTech.requiredTech(this.techArr)] 
 );
 
   projectCategory = [
@@ -69,6 +70,9 @@ export class CreateProjectComponent {
   removeEx(index: number){
     this.experienceLevel.push(this.expArr[index]);
     this.expArr.splice(index, 1);
+
+    console.log("expArr: ",this.expArr);
+    console.log("experienceLevel: ",this.experienceLevel);
   }
   
   addEx(event: Event){
@@ -77,6 +81,9 @@ export class CreateProjectComponent {
     
     this.expArr.push(this.experienceLevel[ value ]);
     this.experienceLevel.splice(value, 1);
+
+    console.log("expArr: ",this.expArr);
+    console.log("experienceLevel: ",this.experienceLevel);
   }
 
   async postProject(){
@@ -94,6 +101,7 @@ export class CreateProjectComponent {
     }
 
     await this.projectService.createProject(post)
+
     this.route.navigate(['/open'])
   }
 }

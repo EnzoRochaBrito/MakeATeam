@@ -4,8 +4,9 @@
             <h2 class="title text-white mb-2">Encontre o projeto ideal para as suas habilidades.</h2>
             <p class="mb-4 text-white">Conecte-se com desenvolvedores que compartilham seus interesses</p>
             <div class="a d-flex">
-                <input class="search-stack form-control" type="text" placeholder="Pesquise por tecnologias (React, Node, Python...)">
-                <button type="submit" class="search-btn px-4">Buscar</button>
+                {{searchedTech.split(' ')}}
+                <input [(ngModel)]="searchedTech" class="search-stack form-control" type="text" placeholder="Pesquise por tecnologias (React, Node, Python...)">
+                <button type="submit" class="search-btn px-4" (click)="searchByTech()">Buscar</button>
             </div>
         </div>
         <div class="filter-search px-4 shadow-sm d-flex flex-row justify-content-between align-items-center p-2 gap-3">
@@ -29,9 +30,9 @@
             </div>
             <div class="sorting d-flex flex-row gap-2 align-items-center w-auto">
                 <p class="mb-0 d-none d-md-block">Ordernar por: </p>
-                <select name="" id="" class="form-select">
-                    <option value="0">Mais recente</option>
-                    <option value="1">Mais antigo</option>
+                <select [(ngModel)]="order" name="" id="" class="form-select">
+                    <option value="desc">Mais recente</option>
+                    <option value="asc">Mais antigo</option>
                 </select>
             </div>
         </div>
@@ -45,6 +46,7 @@
         [createdAt]="project.createdAt"
         [vacancyAmount]="project.vancancy"
         [creator]="project.creator"
+        [peopleIn]="project.peopleIn"
         ></project-card>
 
     </section>
