@@ -18,6 +18,7 @@ export class ProjectService {
   }
 
   public async createProject(project: CreateProjectDTO){
+
     const projectRef = doc(collection(this.firestore, 'project'));
     const userRef    = doc(this.firestore, 'user', this.userUid);
 
@@ -56,10 +57,19 @@ export class ProjectService {
     const posts = querySnapshot.docs.map(doc => ({
       uid: doc.id,
       peopleIn: 0,
+      
       ...doc.data() as ProjectType
     }));
   
     return posts;
+  }
+
+  public async getProjectByUid(uid: string){
+    const projectRef = collection(this.firestore, 'project', uid);
+    let q = query(projectRef);
+    const querySnapshot = await getDocs(q);
+    const project = querySnapshot.docs[0].data() as ProjectTypeUid
+    return project;
   }
   
   

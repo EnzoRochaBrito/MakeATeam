@@ -10,8 +10,6 @@
             <p class="mb-0 members">{{peopleIn}} / {{vacancyAmount}} membros</p>
             <p class="mb-0 time">{{createdAt | date }}</p>
         </div>
-        <a href="">
-            <div class="acess btn btn-primary w-100">Ver Projeto</div>
-        </a>
+        <div class="acess btn btn-primary w-100" [routerLink]="[`/project/${uid}`]">Ver Projeto</div>
     </div>
 </div>
