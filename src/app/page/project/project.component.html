@@ -69,7 +69,7 @@
             </div>
             <div class="project-actions d-flex flex-md-row flex-column-reverse gap-2">
                 <button (click)="saveProject()" class="btn btn-outline-secondary flex-grow-1">Salvar Projeto</button>
-                <button (click)="memberResquest()" [disabled]="!canAcess" class="btn btn-primary text-white flex-grow-1">Participar do Projeto</button>
+                <button (click)="memberResquest()" [disabled]="canAcess" class="btn btn-primary text-white flex-grow-1">Participar do Projeto</button>
             </div>
         </div>
     </div>

@@ -22,6 +22,18 @@ export class CreateProjectComponent {
   techArr: string[] = [];
   expArr: string[] = [];
   route = inject(Router);
+  controlWarn = {
+    name: 'Nome é obrigatório.',
+    description: 'Descrição é obrigatória.',
+    category: 'Categoria é obrigatória.',
+    experience: 'Nível de experiência é obrigatório.',
+    technologies: 'Adicione pelo menos uma tecnologia necessária.',
+    startDate: 'Data de início é obrigatória.',
+    estimatedTime: 'Duração precisa ser um número positivo.',
+    vacancy: 'Informe ao menos uma vaga.',
+    repository: 'Link inválido (opcional).'
+  };
+
 
   constructor(readonly authService: AuthService, readonly projectService: ProjectService) {}
 

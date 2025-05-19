@@ -21,9 +21,9 @@ export class UserServiceService implements OnInit {
     return profile.data()
   }
 
-  async addOwnedProject(projectUid: string){
+  async addOwnedProject(projectUid: string, userUid: string){
     const projectRef = doc(this.firestore, 'project', projectUid);
-    const userRef    = doc(this.firestore, 'user', this.userUid);
+    const userRef    = doc(this.firestore, 'user', userUid);
     await updateDoc(userRef, {
       projectsOwned: arrayUnion(projectRef.id)
     })

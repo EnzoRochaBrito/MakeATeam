@@ -19,7 +19,7 @@ export class ProjectComponent implements OnInit {
   uid!: string;
   projectBody!: ProjectTypeUid;
   creatorId!: string;
-  canAcess: boolean = true;
+  canAcess!: boolean;
   currentUserUid!: string;
 
   categoryMap = [
@@ -37,19 +37,16 @@ export class ProjectComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.uid = this.route.snapshot.paramMap.get('uid')!;
     
-    // this.projectBody = await this.projectService.getProjectByUid(this.uid) as ProjectTypeUid;
+    this.projectBody = await this.projectService.getProjectByUid(this.uid) as ProjectTypeUid;
     // localStorage.setItem('project', JSON.stringify(this.projectBody))
-    this.projectBody = JSON.parse(localStorage.getItem('project')!) as ProjectTypeUid
+    // this.projectBody = JSON.parse(localStorage.getItem('project')!) as ProjectTypeUid
 
     this.creatorId = this.projectBody.userRef._key.path.segments[6] as string
     
     this.currentUserUid = JSON.parse(localStorage.getItem('profile')!).uid as string
 
-    console.log(this.currentUserUid)
-
-    if ((this.creatorId == this.currentUserUid)) {
-      this.canAcess = false;
-    }
+    ((this.creatorId == this.currentUserUid)) ? this.canAcess = false : this.canAcess = true;
+    console.log(this.canAcess)
 
   }
 

@@ -23,7 +23,7 @@ export class ProjectService {
     const projectRef = doc(collection(this.firestore, 'project'));
     const userRef    = doc(this.firestore, 'user', this.userUid);
 
-    await this.userService.addOwnedProject(projectRef.id)
+    await this.userService.addOwnedProject(projectRef.id, this.userUid)
     
     return await setDoc(projectRef, {
       ...project,
