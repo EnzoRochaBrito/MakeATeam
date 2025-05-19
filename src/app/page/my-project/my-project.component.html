@@ -2,9 +2,16 @@
 
     <div class="my-projects-wrapper mx-auto p-md-3 p-0 mb-md-2 mb-0">
         <div class="my-projects bg-white px-2 py-4 shadow-sm">
-            <div class="row">
-                <div class="col-8 bg-black">a</div>
-                <div class="col-4 bg-danger">b</div>
+            <div class="row h-75">
+                <div class="projects col-md-8 col-12 p-1">
+                    <h1 class="mx-2 title fs-3 text-primary">Projetos</h1>
+                    <section class="projects w-100 p-1">
+                        <project-preview *ngFor="let project of userProjectsArr" [uid]="project.uid"></project-preview>
+                    </section>
+                </div>
+                <div class="requests col-md-4 col-12 p-1">
+                    <h1 class="mx-2 title fs-3 text-primary">Requests</h1>
+                </div>
             </div>
         </div>
     </div>

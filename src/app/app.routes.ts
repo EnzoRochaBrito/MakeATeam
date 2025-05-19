@@ -32,7 +32,7 @@ export const routes: Routes = [
         loadComponent: () => import('./page/user/user.component').then(m => m.UserComponent)
     },
     {
-        path: "my-project",
+        path: "my-projects",
         loadComponent: () => import('./page/my-project/my-project.component').then(m => m.MyProjectComponent)
     },
     {
