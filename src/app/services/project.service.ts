@@ -40,7 +40,7 @@ export class ProjectService {
     );
   
     if (category !== '*') {
-      q = query(q, where('category', '==', category));
+      q = query(q, where('category', '==', Number(category)));
     }
   
     if (experience !== '*') {
@@ -51,6 +51,7 @@ export class ProjectService {
   
     const posts = querySnapshot.docs.map(doc => ({
       uid: doc.id,
+      peopleIn: 0,
       ...doc.data() as ProjectType
     }));
   
