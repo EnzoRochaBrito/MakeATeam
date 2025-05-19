@@ -49,7 +49,8 @@
                     <div class="detail-cell-wrapper col-md-6 col-12 p-1 bg-white">
                         <div class="detail-cell p-2">
                             <p class="mb-0 section-name d-block fw-bold">Repositório</p>
-                            <a *ngIf="projectBody.vancancy" [href]="projectBody.vancancy" target="_blank"><p class="mb-0 info">{{projectBody.vancancy}}</p></a>
+                            <a *ngIf="projectBody.repository; else no_repo" [href]="projectBody.repository" target="_blank"><p class="mb-0 info">{{projectBody.repository}}</p></a>
+                            <ng-template #no_repo><p class="mb-0">Sem repositório</p></ng-template>
                         </div>
                     </div>
                 </div>
@@ -57,7 +58,7 @@
             <div class="project-tech">
                 <h1 class="title mx-1 text-primary fw-bold fs-3 mb-3">Tecnologias Utilizadas</h1>
                 <div class="tags p-0 d-flex flex-row align-items-center gap-2 mb-4 flex-wrap">
-                    <p *ngFor="let tech of projectBody.technologies" class="tag">Node</p>
+                    <p *ngFor="let tech of projectBody.technologies" class="tag">{{tech}}</p>
                 </div>
             </div>
             <div class="project-experience">
@@ -67,8 +68,8 @@
                 </div>
             </div>
             <div class="project-actions d-flex flex-md-row flex-column-reverse gap-2">
-                <div class="btn btn-outline-secondary flex-grow-1">Salvar Projeto</div>
-                <div class="btn btn-primary text-white flex-grow-1">Participar do Projeto</div>
+                <button (click)="saveProject()" class="btn btn-outline-secondary flex-grow-1">Salvar Projeto</button>
+                <button [disabled]="!canAcess" class="btn btn-primary text-white flex-grow-1">Participar do Projeto</button>
             </div>
         </div>
     </div>

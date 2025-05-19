@@ -56,6 +56,8 @@ export class AuthService {
         }
 
         const profile = snapshot.data() as UserProfileDTO;
+        
+        sessionStorage.setItem("profile", JSON.stringify(profile))
 
         return profile;
       })

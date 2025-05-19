@@ -7,7 +7,7 @@
             <p class="tag" *ngFor="let tag of tags">{{tag}}</p>
         </div>
         <div class="info my-3 d-flex align-items-center justify-content-between bg">
-            <p class="mb-0 members">{{peopleIn}} / {{vacancyAmount}} membros</p>
+            <p class="mb-0 members">{{ members.length }} / {{vacancyAmount}} membros</p>
             <p class="mb-0 time">{{createdAt | date }}</p>
         </div>
         <div class="acess btn btn-primary w-100" [routerLink]="[`/project/${uid}`]">Ver Projeto</div>

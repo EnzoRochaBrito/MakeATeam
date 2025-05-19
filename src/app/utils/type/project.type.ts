@@ -11,11 +11,13 @@ export interface ProjectType {
     vancancy: number
     repository: string
     createdAt: number
-    userRef: string
+    userRef: any
     creator: string
 }
 
 export interface ProjectTypeUid extends ProjectType {
     uid: string
-    peopleIn: number
+    members: string[]
+    requests: string[]
+    open: boolean
 }

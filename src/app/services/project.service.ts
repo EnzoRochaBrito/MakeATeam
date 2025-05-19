@@ -57,7 +57,9 @@ export class ProjectService {
     const posts = querySnapshot.docs.map(doc => ({
       uid: doc.id,
       peopleIn: 0,
-      
+      open: true,
+      members: [],
+      requests: [],
       ...doc.data() as ProjectType
     }));
   

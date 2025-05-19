@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StandartComponent } from '../../template/standart/standart.component';
 import { ProjectService } from '../../services/project.service';
 import { ProjectTypeUid } from '../../utils/type/project.type';
 import { CommonModule, DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { UserServiceService } from '../../services/user-service.service';
 
 @Component({
   selector: 'app-project',
@@ -12,8 +15,12 @@ import { CommonModule, DatePipe } from '@angular/common';
   styleUrl: './project.component.css'
 })
 export class ProjectComponent implements OnInit {
+
   uid!: string;
   projectBody!: ProjectTypeUid;
+  creatorId!: string;
+  canAcess: boolean = true;
+
   categoryMap = [
     'Desenvolvimento Web',
     'Desenvolvimnto Mobile',
@@ -24,11 +31,37 @@ export class ProjectComponent implements OnInit {
   ]
   currentCategory!: string;
 
-  constructor(private readonly route: ActivatedRoute, private readonly projectService: ProjectService) { }
+  constructor(readonly route: ActivatedRoute, readonly router: Router ,readonly projectService: ProjectService, readonly authSerice: AuthService, readonly userService: UserServiceService) { }
 
   async ngOnInit(): Promise<void> {
     this.uid = this.route.snapshot.paramMap.get('uid')!;
-    this.projectBody = await this.projectService.getProjectByUid(this.uid) as ProjectTypeUid;
+    // this.projectBody = await this.projectService.getProjectByUid(this.uid) as ProjectTypeUid;
+
+    this.projectBody = JSON.parse(localStorage.getItem('project')!) as ProjectTypeUid
+
+    this.creatorId = this.projectBody.userRef._key.path.segments[6] as string
+    
+    const currentUserId = '' 
+    // this.authSerice.currentUser()?.uid;
+
+    if ((this.creatorId == currentUserId)) {
+      this.canAcess = false;
+    }
+
+    console.log(currentUserId);
+    console.log(this.creatorId);
     console.log(this.projectBody);
   }
+
+  async saveProject(){
+    if (!this.authSerice.isLogged()){
+      this.router.navigate(['/login']);
+      return false;
+    }
+
+    await this.userService.saveProject(this.uid)
+    return
+  }
+  
+
 }
