@@ -56,3 +56,7 @@
         scale: .99;
     }
 }
+
+.creator{
+    cursor: pointer;
+}

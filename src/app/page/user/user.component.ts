@@ -5,10 +5,11 @@ import { IUserProfile, UserProfileDTO } from '../../utils/dto/user.dto';
 import { StandartComponent } from '../../template/standart/standart.component';
 import { CommonModule } from '@angular/common';
 import { ProjectTypeUid } from '../../utils/type/project.type';
+import { ProjectPreviewComponent } from '../../widget/project-preview/project-preview.component';
 
 @Component({
   selector: 'app-user',
-  imports: [StandartComponent, CommonModule, RouterLink],
+  imports: [StandartComponent, CommonModule, RouterLink, ProjectPreviewComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })

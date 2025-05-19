@@ -1,0 +1,10 @@
+.project-title{
+    border-radius: .5rem .5rem 0 0;
+}
+.project-description{
+    border-radius: 0 0 .5rem .5rem;
+    background-color: #dfecff50;
+    .description{
+        text-wrap: wrap;
+    }
+}

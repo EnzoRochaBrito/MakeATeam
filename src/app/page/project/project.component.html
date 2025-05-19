@@ -13,7 +13,7 @@
                     <h2 class="category d-inline-block">{{categoryMap[projectBody.category]}}</h2>
                 </div>
                 <div class="right">
-                    <h2 class="creator">Por: {{projectBody.creator}}</h2>
+                    <h2 class="creator" [routerLink]="['/user', creatorId]">Por: <span class="text-primary">{{projectBody.creator}}</span></h2>
                 </div>
             </div>
             <hr>
@@ -69,7 +69,7 @@
             </div>
             <div class="project-actions d-flex flex-md-row flex-column-reverse gap-2">
                 <button (click)="saveProject()" class="btn btn-outline-secondary flex-grow-1">Salvar Projeto</button>
-                <button (click)="memberResquest()" [disabled]="canAcess" class="btn btn-primary text-white flex-grow-1">Participar do Projeto</button>
+                <button (click)="memberResquest()" [disabled]="!canAcess" class="btn btn-primary text-white flex-grow-1">Participar do Projeto</button>
             </div>
         </div>
     </div>

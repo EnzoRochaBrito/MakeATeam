@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { StandartComponent } from '../../template/standart/standart.component';
 import { ProjectService } from '../../services/project.service';
 import { ProjectTypeUid } from '../../utils/type/project.type';
@@ -10,7 +10,7 @@ import { UserServiceService } from '../../services/user-service.service';
 
 @Component({
   selector: 'app-project',
-  imports: [StandartComponent, DatePipe, CommonModule],
+  imports: [StandartComponent, DatePipe, CommonModule, RouterLink],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })
