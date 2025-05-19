@@ -4,7 +4,6 @@
             <h2 class="title text-white mb-2">Encontre o projeto ideal para as suas habilidades.</h2>
             <p class="mb-4 text-white">Conecte-se com desenvolvedores que compartilham seus interesses</p>
             <div class="a d-flex">
-                {{searchedTech.split(' ')}}
                 <input [(ngModel)]="searchedTech" class="search-stack form-control" type="text" placeholder="Pesquise por tecnologias (React, Node, Python...)">
                 <button type="submit" class="search-btn px-4" (click)="searchByTech()">Buscar</button>
             </div>

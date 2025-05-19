@@ -62,7 +62,7 @@ export class CreateProjectComponent {
   addTag(){
     const value: string = this.createProjectForm.controls.technologies.value as string;
     if (value){
-      this.techArr.push(value.trim())
+      this.techArr.push(value.trim().toLowerCase())
       this.createProjectForm.controls.technologies.setValue('')
     }
   }

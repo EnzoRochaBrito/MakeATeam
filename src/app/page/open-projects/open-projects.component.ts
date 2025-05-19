@@ -29,7 +29,7 @@ export class OpenProjectsComponent implements OnInit {
   }
 
   async searchByTech(){
-    const searchArr: string[] = this.searchedTech.split(' ') 
+    const searchArr: string[] = this.searchedTech.toLowerCase().split(' ') 
     this.projectArr = await this.projectService.searchProject(this.experience, this.category, searchArr, this.order);
   }
 
