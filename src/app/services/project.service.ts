@@ -46,6 +46,7 @@ export class ProjectService {
     let q = query(
       projectRef,
       orderBy('createdAt', order),
+      where('open', '==', true),
       limit(15)
     );
   
@@ -99,17 +100,32 @@ export class ProjectService {
     });
   }
 
-  public async addMember(projectUid: string, userUid: string){
+  public async closeProject(projectUid: string){
+    const projectRef = doc(this.firestore, 'project', projectUid);
+    await updateDoc(projectRef, {
+      open: false
+    });
+  }
+
+  public async addMember(project: ProjectTypeUid, userUid: string){
+    
+    const projectUid = project.uid
+
+    if (project.members.length == project.vancancy){
+      await this.closeProject(projectUid)
+      return new Error('Quantidade máxima de usuários atingida');
+    }
+
     const projectRef = doc(this.firestore, 'project', projectUid);
 
-    await updateDoc(projectRef, {
+    return await updateDoc(projectRef, {
       memberRequest: arrayRemove(userUid),
       members: arrayUnion(userUid)
     });
   }
 
-  public async deleteRequest(projectUid: string, userUid: string){
-    const projectRef = doc(this.firestore, 'project', projectUid);
+  public async deleteRequest(project: ProjectTypeUid, userUid: string){
+    const projectRef = doc(this.firestore, 'project', project.uid);
 
     await updateDoc(projectRef, {
       memberRequest: arrayRemove(userUid)

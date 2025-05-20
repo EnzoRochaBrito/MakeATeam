@@ -17,7 +17,7 @@ export class MyProjectComponent implements OnInit {
   userProjectsArr: ProjectTypeUid[] = [];
   userProjectsId: string[] = []
   requestsUid: string[] = []
-  currentProject!: string
+  currentProject!: ProjectTypeUid;
 
   constructor(readonly projectService: ProjectService){ }
 
@@ -30,7 +30,7 @@ export class MyProjectComponent implements OnInit {
   }
 
   async getUsers(id: number){
-    this.currentProject = this.userProjectsArr[id].uid
+    this.currentProject = this.userProjectsArr[id];
     this.requestsUid = this.userProjectsArr[id].memberRequest
   }
 

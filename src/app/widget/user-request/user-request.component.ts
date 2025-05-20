@@ -4,6 +4,7 @@ import { UserProfileDTO } from '../../utils/dto/user.dto';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProjectService } from '../../services/project.service';
+import { ProjectTypeUid } from '../../utils/type/project.type';
 
 @Component({
   selector: 'user-request',
@@ -13,7 +14,7 @@ import { ProjectService } from '../../services/project.service';
 })
 export class UserRequestComponent implements OnInit {
   @Input() uid!: string;
-  @Input() projectUid!: string;
+  @Input() projectObj!: ProjectTypeUid;
   user!: UserProfileDTO;
 
   constructor(readonly userService: UserServiceService, readonly projectService: ProjectService){ }
@@ -23,10 +24,10 @@ export class UserRequestComponent implements OnInit {
   } 
 
   async addMember(userUid: string){
-    await this.projectService.addMember(this.projectUid, userUid);
+    await this.projectService.addMember(this.projectObj, userUid);
   }
 
   async deleteRequest(userUid: string){
-    await this.projectService.deleteRequest(this.projectUid, userUid);
+    await this.projectService.deleteRequest(this.projectObj, userUid);
   }
 }
