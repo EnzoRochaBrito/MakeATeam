@@ -13,6 +13,7 @@ import { ProjectService } from '../../services/project.service';
 })
 export class UserRequestComponent implements OnInit {
   @Input() uid!: string;
+  @Input() projectUid!: string;
   user!: UserProfileDTO;
 
   constructor(readonly userService: UserServiceService, readonly projectService: ProjectService){ }
@@ -22,10 +23,10 @@ export class UserRequestComponent implements OnInit {
   } 
 
   async addMember(userUid: string){
-    await this.projectService.addMember(this.uid, userUid);
+    await this.projectService.addMember(this.projectUid, userUid);
   }
 
   async deleteRequest(userUid: string){
-    await this.projectService.deleteRequest(this.uid, userUid);
+    await this.projectService.deleteRequest(this.projectUid, userUid);
   }
 }

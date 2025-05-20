@@ -21,6 +21,7 @@ export class ProjectComponent implements OnInit {
   creatorId!: string;
   canAcess!: boolean;
   currentUserUid!: string;
+  available!: number;
 
   categoryMap = [
     'Desenvolvimento Web',
@@ -46,9 +47,9 @@ export class ProjectComponent implements OnInit {
     this.currentUserUid = JSON.parse(sessionStorage.getItem('profile')!).uid as string
 
     ((this.creatorId === this.currentUserUid)) ? this.canAcess = false : this.canAcess = true;
-    console.log(this.creatorId)
-    console.log(this.currentUserUid)
-    console.log(this.canAcess)
+    
+    this.available = this.projectBody.vancancy - this.projectBody.members.length;
+
 
   }
 

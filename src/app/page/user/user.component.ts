@@ -6,10 +6,11 @@ import { StandartComponent } from '../../template/standart/standart.component';
 import { CommonModule } from '@angular/common';
 import { ProjectTypeUid } from '../../utils/type/project.type';
 import { ProjectPreviewComponent } from '../../widget/project-preview/project-preview.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
-  imports: [StandartComponent, CommonModule, RouterLink, ProjectPreviewComponent],
+  imports: [StandartComponent, CommonModule, RouterLink, ProjectPreviewComponent, FormsModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
@@ -20,13 +21,38 @@ export class UserComponent implements OnInit {
   ownedProjects!: ProjectTypeUid[]
   savedProjects!: ProjectTypeUid[]
   memberOfProjects!: ProjectTypeUid[]
+  itsCurrentUser!: boolean
+  userStack: string = '';
+
   constructor(readonly route: ActivatedRoute, readonly userService: UserServiceService){}
 
   async ngOnInit(): Promise<void> {
+
     this.uid = this.route.snapshot.paramMap.get('uid')!;
     this.userProfile = await this.userService.getUser(this.uid) as IUserProfile;
     
-    localStorage.setItem("profile", JSON.stringify(this.userProfile))
+    const currentUid: string = JSON.parse(localStorage.getItem("profile")!).uid as string;
+
+    (currentUid === this.uid) ? this.itsCurrentUser = true : this.itsCurrentUser = false;
+
+    // sessionStorage.setItem("profile", JSON.stringify(this.userProfile))
     //JSON.parse(localStorage.getItem("profile")!)
   }
+
+  removeStack(index: number){
+    this.userProfile.stack?.splice(index, 1);
+  }
+
+  addStack(){
+    if (this.userStack){
+      this.userProfile.stack?.push(this.userStack.trim().toLowerCase())
+      this.userStack = '';
+    }
+  }
+
+  async saveUser(){
+    await this.userService.updateUser(this.userProfile)
+  }
+
+
 }

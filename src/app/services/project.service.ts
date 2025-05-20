@@ -33,6 +33,8 @@ export class ProjectService {
       ...project,
       createdAt: Date.now(),
       userRef: userRef,
+      open: true,
+      members: [],
       creator: this.authService.currentUser()?.displayName
     })
   } 

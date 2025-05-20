@@ -1,6 +1,7 @@
 import { inject, Injectable, OnInit } from '@angular/core';
 import { arrayRemove, arrayUnion, collection, doc, Firestore, getDoc, query, setDoc, updateDoc } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
+import { IUserProfile } from '../utils/dto/user.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,14 @@ export class UserServiceService implements OnInit {
 
   async listSavedProjects(){
     const profile = JSON.parse(sessionStorage.getItem("profile")!)
+  }
+
+  async updateUser(user: IUserProfile){
+    const userRef = doc(this.firestore, 'user', this.userUid);
+    await updateDoc(userRef, {user})
+    const profile = await getDoc(userRef)
+    sessionStorage.setItem("profile", JSON.stringify(profile.data()))
+    return
   }
 
 }

@@ -16,7 +16,7 @@ export interface ProjectType {
 }
 
 export interface ProjectTypeUid extends ProjectType {
-    memberRequest: string[];
+    memberRequest: string[]
     uid: string
     members: string[]
     open: boolean

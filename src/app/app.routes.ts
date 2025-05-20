@@ -16,7 +16,8 @@ export const routes: Routes = [
     },
     {
         path: "open",
-        loadComponent: () => import('./page/open-projects/open-projects.component').then(m => m.OpenProjectsComponent)
+        loadComponent: () => import('./page/open-projects/open-projects.component').then(m => m.OpenProjectsComponent),
+        canActivate: [isLoggedGuard]
     },
     {
         path: "create",
@@ -25,11 +26,13 @@ export const routes: Routes = [
     },
     {
         path: "project/:uid",
-        loadComponent: () => import('./page/project/project.component').then(m => m.ProjectComponent)
+        loadComponent: () => import('./page/project/project.component').then(m => m.ProjectComponent),
+        canActivate: [isLoggedGuard]
     },
     {
         path: "user/:uid",
-        loadComponent: () => import('./page/user/user.component').then(m => m.UserComponent)
+        loadComponent: () => import('./page/user/user.component').then(m => m.UserComponent),
+        canActivate: [isLoggedGuard]
     },
     {
         path: "my-project",

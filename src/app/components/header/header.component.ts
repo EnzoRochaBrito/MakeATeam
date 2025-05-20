@@ -9,5 +9,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  userUid!: string;
 
+  constructor(){
+    this.userUid = JSON.parse(sessionStorage.getItem('profile')!).uid as string;
+  }
 }
