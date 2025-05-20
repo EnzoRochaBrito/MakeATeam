@@ -35,10 +35,11 @@ export class UserComponent implements OnInit {
       this.userProfile.description = ""
     }
 
-    const currentUid: string = JSON.parse(localStorage.getItem("profile")!).uid as string;
+    const currentUid: string = JSON.parse(sessionStorage.getItem("profile")!).uid as string;
 
     (currentUid === this.uid) ? this.itsCurrentUser = true : this.itsCurrentUser = false;
 
+    console.log(currentUid)
   }
 
   removeStack(index: number){
