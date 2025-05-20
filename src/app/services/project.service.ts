@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { CreateProjectDTO } from '../utils/dto/create.project.dto';
 import { ProjectType, ProjectTypeUid } from '../utils/type/project.type';
 import { UserServiceService } from './user-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ProjectService {
   firestore = inject(Firestore)
   userUid!: string;
 
-  constructor(private authService: AuthService, readonly userService: UserServiceService) {
+  constructor(private authService: AuthService, readonly userService: UserServiceService, readonly toastr: ToastrService) {
     try {
       this.userUid = JSON.parse(sessionStorage.getItem('profile') as string).uid
     } catch(error) {
@@ -23,20 +24,29 @@ export class ProjectService {
   }
 
   public async createProject(project: CreateProjectDTO){
+      try{
 
-    const projectRef = doc(collection(this.firestore, 'project'));
-    const userRef    = doc(this.firestore, 'user', this.userUid);
+        const projectRef = doc(collection(this.firestore, 'project'));
+        const userRef    = doc(this.firestore, 'user', this.userUid);
+        
+        await this.userService.addOwnedProject(projectRef.id, this.userUid)
+        
+        await setDoc(projectRef, {
+        ...project,
+        createdAt: Date.now(),
+        userRef: userRef,
+        open: true,
+        members: [],
+        creator: this.authService.currentUser()?.displayName
+      })
 
-    await this.userService.addOwnedProject(projectRef.id, this.userUid)
-    
-    return await setDoc(projectRef, {
-      ...project,
-      createdAt: Date.now(),
-      userRef: userRef,
-      open: true,
-      members: [],
-      creator: this.authService.currentUser()?.displayName
-    })
+      this.toastr.success('Projeto criado com sucesso!')
+      
+      return true
+
+    } catch(err) {
+        return false
+    }
   } 
 
   public async searchProject(experience: string = '*', category: string = '*', tech: string[] = [], order: OrderByDirection = 'desc'): Promise<ProjectTypeUid[]> {
@@ -93,18 +103,33 @@ export class ProjectService {
   }
   
   public async sendMemberRequest(projectUid: string){
-    const projectRef = doc(this.firestore, 'project', projectUid);
+    try {
+      
+      const projectRef = doc(this.firestore, 'project', projectUid);
+  
+      await updateDoc(projectRef, {
+      memberRequest: arrayUnion(this.userUid)
+      });
+      
+      this.toastr.success('Requisição enviada com sucesso!')
 
-    await updateDoc(projectRef, {
-    memberRequest: arrayUnion(this.userUid)
-    });
+    } catch (error) {
+
+      this.toastr.error('Erro ao mandar a requisição')
+
+    }
   }
 
   public async closeProject(projectUid: string){
-    const projectRef = doc(this.firestore, 'project', projectUid);
-    await updateDoc(projectRef, {
-      open: false
-    });
+    try {
+      const projectRef = doc(this.firestore, 'project', projectUid);
+      await updateDoc(projectRef, {
+        open: false
+      });
+      this.toastr.warning('Quantidade máxima atingida!', 'Projeto Fechado')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   public async addMember(project: ProjectTypeUid, userUid: string){
@@ -115,19 +140,37 @@ export class ProjectService {
       await this.closeProject(projectUid)
     }
 
-    const projectRef = doc(this.firestore, 'project', projectUid);
-
-    return await updateDoc(projectRef, {
-      memberRequest: arrayRemove(userUid),
-      members: arrayUnion(userUid)
-    });
+    try {
+      const projectRef = doc(this.firestore, 'project', projectUid);
+  
+      await updateDoc(projectRef, {
+        memberRequest: arrayRemove(userUid),
+        members: arrayUnion(userUid)
+      });
+      this.toastr.info('Usuário adicionado com sucesso!')
+    } catch (error) {
+      
+      this.toastr.error('Erro ao adicionar o usuário')
+      console.log(error)
+      
+    }
+    
   }
-
+  
   public async deleteRequest(project: ProjectTypeUid, userUid: string){
-    const projectRef = doc(this.firestore, 'project', project.uid);
+    try {
+      const projectRef = doc(this.firestore, 'project', project.uid);
+      
+      await updateDoc(projectRef, {
+        memberRequest: arrayRemove(userUid)
+      });
+      
+      this.toastr.info('Usuário removido com sucesso!')
+    } catch (error) {
 
-    await updateDoc(projectRef, {
-      memberRequest: arrayRemove(userUid)
-    });
+      this.toastr.info('Erro ao remover o usuário')
+      console.log(error)
+
+    }
   }
 }

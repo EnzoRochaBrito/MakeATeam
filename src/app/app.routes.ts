@@ -31,8 +31,7 @@ export const routes: Routes = [
     },
     {
         path: "user/:uid",
-        loadComponent: () => import('./page/user/user.component').then(m => m.UserComponent),
-        canActivate: [isLoggedGuard]
+        loadComponent: () => import('./page/user/user.component').then(m => m.UserComponent)
     },
     {
         path: "my-project",

@@ -35,21 +35,6 @@ export class OpenProjectsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.projectArr = await this.projectService.searchProject();
-    // this.projectArr = [{
-    //   name: 'test',
-    //   category: 1,
-    //   createdAt: Date.now(),
-    //   uid: '123123',
-    //   description: 'Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. Lorem ipsum dolor. ',
-    //   experience: ['Junior'],
-    //   technologies: ['teste', 'abc'],
-    //   startDate: 'now',
-    //   estimtedTime: 13,
-    //   vancancy: 23,
-    //   repository: '',
-    //   userRef: '1230-231',
-    //   creator: 'Enzo Rocha Brito'
-    // }]
   }
   
 
