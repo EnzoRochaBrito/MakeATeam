@@ -10,8 +10,8 @@
                     </section>
                 </div>
                 <div class="requests col-md-4 col-12 p-1">
-                    <h1 class="mx-2 title fs-3 text-primary">Requisições</h1>
-                    <section *ngIf="requestsUid && requestsUid.length>0" class="requests w-100 p-1">
+                    <h1 *ngIf="currentProject" class="mx-2 title fs-3 text-primary overflow-x-auto d-inline">Requisições: {{currentProject.name}}</h1>
+                    <section *ngIf="requestsUid && requestsUid.length>0 && currentProject" class="requests w-100 p-1">
                         <user-request *ngFor="let uid of requestsUid; let i = index" [arrIndex]="i" [uid]="uid" [projectObj]="currentProject" (activated)="removeRequest($event)" ></user-request>
                     </section>
                 </div>

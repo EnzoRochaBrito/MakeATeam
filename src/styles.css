@@ -26,7 +26,7 @@ body{
 }
 
 .big-gradient{
-    z-index: -1;
+    z-index: -2;
     background: linear-gradient(to top, rgb(230, 235, 253), white);
     position: fixed;
     top: 50%;
