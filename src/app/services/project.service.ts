@@ -67,6 +67,7 @@ export class ProjectService {
       open: true,
       members: [],
       requests: [],
+      memberRequest: [],
       ...doc.data() as ProjectType
     }));
   
@@ -93,6 +94,23 @@ export class ProjectService {
 
     await updateDoc(projectRef, {
     memberRequest: arrayUnion(this.userUid)
+    });
+  }
+
+  public async addMember(projectUid: string, userUid: string){
+    const projectRef = doc(this.firestore, 'project', projectUid);
+
+    await updateDoc(projectRef, {
+      memberRequest: arrayRemove(userUid),
+      members: arrayUnion(userUid)
+    });
+  }
+
+  public async deleteRequest(projectUid: string, userUid: string){
+    const projectRef = doc(this.firestore, 'project', projectUid);
+
+    await updateDoc(projectRef, {
+      memberRequest: arrayRemove(userUid)
     });
   }
 }

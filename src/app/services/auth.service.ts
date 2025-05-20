@@ -30,6 +30,8 @@ export class AuthService {
         await updateProfile(cred.user, {displayName: user.name});
 
         const profile = doc(this.firestore, 'user', cred.user.uid);
+
+        sessionStorage.setItem("profile", JSON.stringify(profile))
         
         await setDoc(profile, {
           name: user.name,

@@ -43,9 +43,11 @@ export class ProjectComponent implements OnInit {
 
     this.creatorId = this.projectBody.userRef._key.path.segments[6] as string
     
-    this.currentUserUid = JSON.parse(localStorage.getItem('profile')!).uid as string
+    this.currentUserUid = JSON.parse(sessionStorage.getItem('profile')!).uid as string
 
-    ((this.creatorId == this.currentUserUid)) ? this.canAcess = false : this.canAcess = true;
+    ((this.creatorId === this.currentUserUid)) ? this.canAcess = false : this.canAcess = true;
+    console.log(this.creatorId)
+    console.log(this.currentUserUid)
     console.log(this.canAcess)
 
   }

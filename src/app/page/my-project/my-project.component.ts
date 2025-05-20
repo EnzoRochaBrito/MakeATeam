@@ -4,10 +4,11 @@ import { ProjectService } from '../../services/project.service';
 import { ProjectTypeUid } from '../../utils/type/project.type';
 import { ProjectPreviewComponent } from '../../widget/project-preview/project-preview.component';
 import { CommonModule } from '@angular/common';
+import { UserRequestComponent } from '../../widget/user-request/user-request.component';
 
 @Component({
   selector: 'app-my-project',
-  imports: [StandartComponent, ProjectPreviewComponent, CommonModule],
+  imports: [StandartComponent, ProjectPreviewComponent, CommonModule, UserRequestComponent],
   templateUrl: './my-project.component.html',
   styleUrl: './my-project.component.css'
 })
@@ -15,7 +16,7 @@ export class MyProjectComponent implements OnInit {
 
   userProjectsArr: ProjectTypeUid[] = [];
   userProjectsId: string[] = []
-  
+  requestsUid: string[] = []
 
   constructor(readonly projectService: ProjectService){ }
 
@@ -26,4 +27,9 @@ export class MyProjectComponent implements OnInit {
       this.userProjectsArr.push(project);
     }
   }
+
+  async getUsers(id: number){
+    this.requestsUid = this.userProjectsArr[id].memberRequest
+  }
+
 }

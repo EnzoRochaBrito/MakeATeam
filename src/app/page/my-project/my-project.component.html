@@ -5,12 +5,15 @@
             <div class="row h-75">
                 <div class="projects col-md-8 col-12 p-1">
                     <h1 class="mx-2 title fs-3 text-primary">Projetos</h1>
-                    <section class="projects w-100 p-1">
-                        <project-preview *ngFor="let project of userProjectsArr" [uid]="project.uid"></project-preview>
+                    <section class="projects w-100 p-1 d-flex flex-column gap-2">
+                        <project-preview class="project-p" *ngFor="let project of userProjectsArr; let i = index" [uid]="project.uid" (click)="getUsers(i)"></project-preview>
                     </section>
                 </div>
                 <div class="requests col-md-4 col-12 p-1">
-                    <h1 class="mx-2 title fs-3 text-primary">Requests</h1>
+                    <h1 class="mx-2 title fs-3 text-primary">Requisições</h1>
+                    <section *ngIf="requestsUid && requestsUid.length>0" class="requests w-100 p-1">
+                        <user-request *ngFor="let uid of requestsUid" [uid]="uid"></user-request>
+                    </section>
                 </div>
             </div>
         </div>

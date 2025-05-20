@@ -1,0 +1,7 @@
+<div *ngIf="user" class="user-request w-100 d-flex flex-row justify-content-between align-items-center p-1">
+    <div class="username text-black" [routerLink]="['/user', user.uid]">{{user.name}}</div>
+    <div class="buttons d-flex flex-row gap-1">
+        <button class="btn h-75 btn-success" (click)="addMember(user.uid)">Aceitar</button>
+        <button class="btn h-75 btn-danger" (click)="deleteRequest(user.uid)">Rejeitar</button>
+    </div>
+</div>

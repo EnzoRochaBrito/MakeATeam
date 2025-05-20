@@ -16,3 +16,11 @@
     }
 }
 /* 768px */
+
+.project-p{
+    cursor: pointer;
+    transition: transform .2s;
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
