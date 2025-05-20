@@ -26,8 +26,11 @@ export class ProjectComponent implements OnInit {
   categoryMap = [
     'Desenvolvimento Web',
     'Desenvolvimnto Mobile',
+    'Desenvolvimnto Desktop',
+    'Multi-Plataforma',
     'Inteligência Artificial',
     'Desenvolvimnto de Jogos',
+    'Realidade Aumentada',
     'IoT',
     'Outros'
   ]
