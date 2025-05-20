@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import { ProjectTypeUid } from '../../utils/type/project.type';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'project-preview',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './project-preview.component.html',
   styleUrl: './project-preview.component.css'
 })

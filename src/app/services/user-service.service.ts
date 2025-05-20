@@ -72,8 +72,11 @@ export class UserServiceService implements OnInit {
   }
 
   async updateUser(user: IUserProfile){
-    const userRef = doc(this.firestore, 'user', this.userUid);
-    await updateDoc(userRef, {user})
+    const userRef = doc(this.firestore, 'user', user.uid);
+    await updateDoc(userRef, {
+      description: user.description,
+      stack: user.stack
+    })
     const profile = await getDoc(userRef)
     sessionStorage.setItem("profile", JSON.stringify(profile.data()))
     return

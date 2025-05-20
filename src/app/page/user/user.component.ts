@@ -31,11 +31,15 @@ export class UserComponent implements OnInit {
     this.uid = this.route.snapshot.paramMap.get('uid')!;
     this.userProfile = await this.userService.getUser(this.uid) as IUserProfile;
     
+    if (!this.userProfile.description){
+      this.userProfile.description = ""
+    }
+
     const currentUid: string = JSON.parse(localStorage.getItem("profile")!).uid as string;
 
     (currentUid === this.uid) ? this.itsCurrentUser = true : this.itsCurrentUser = false;
 
-    // sessionStorage.setItem("profile", JSON.stringify(this.userProfile))
+    // localStorage.setItem("profile", JSON.stringify(this.userProfile))
     //JSON.parse(localStorage.getItem("profile")!)
   }
 
@@ -44,10 +48,15 @@ export class UserComponent implements OnInit {
   }
 
   addStack(){
-    if (this.userStack){
-      this.userProfile.stack?.push(this.userStack.trim().toLowerCase())
-      this.userStack = '';
+    if((!this.userProfile.stack)){
+      this.userProfile.stack = []
     }
+      if (this.userStack){
+  
+        this.userProfile.stack?.push(this.userStack.trim().toLowerCase())
+        this.userStack = '';
+      }
+
   }
 
   async saveUser(){

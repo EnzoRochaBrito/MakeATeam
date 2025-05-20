@@ -1,20 +1,20 @@
 <app-standart>
     <div class="user-wrapper mx-auto p-md-3 p-0 mb-md-2 mb-0">
         <div class="user bg-white px-2 py-4 shadow-sm position-relative">
-            <button *ngIf="!itsCurrentUser" class="position-absolute top-0 end-0 m-3 btn btn-success" (click)="saveUser()">Salvar</button>
+            <button *ngIf="itsCurrentUser" class="position-absolute top-0 end-0 m-3 btn btn-success" (click)="saveUser()">Salvar</button>
             <h1 class="user-name text-primary fs-3 mb-3">
                 {{userProfile.name}}
             </h1>
-            <div *ngIf="itsCurrentUser" class="user-description mb-4">
+            <div *ngIf="!itsCurrentUser" class="user-description mb-4">
                 <h1 class="description-title text-primary fs-4 fw-medium mb-1">Descrição</h1>
                 <p *ngIf="userProfile.description; else no_desc" class="mb-0 mx-2">{{userProfile.description}}</p>
                 <ng-template #no_desc>Sem descrição</ng-template>
             </div>
-            <div *ngIf="!itsCurrentUser" class="user-description mb-4">
+            <div *ngIf="itsCurrentUser" class="user-description mb-4">
                 <h1 class="description-title text-primary fs-4 fw-medium mb-1">Descrição</h1>
                 <textarea class="w-100 form-control" [(ngModel)]="userProfile.description"></textarea>
             </div>
-            <div *ngIf="itsCurrentUser" class="user-stack mb-4">
+            <div *ngIf="!itsCurrentUser" class="user-stack mb-4">
                 <h1 class="stack-title text-primary fs-4 fw-medium mb-1">Stack</h1>
                 
                     <div *ngIf="userProfile.stack && userProfile.stack.length > 0; else no_stack" class="tags p-0 d-flex flex-row align-items-center gap-2 mb-4 flex-wrap">
@@ -23,7 +23,7 @@
 
                 <ng-template #no_stack>Sem stack</ng-template>
             </div>
-            <div *ngIf="!itsCurrentUser" class="user-stack mb-4">
+            <div *ngIf="itsCurrentUser" class="user-stack mb-4">
                 <h1 class="stack-title text-primary fs-4 fw-medium mb-1">Stack</h1>
                 
                 <div class="form-control p-2">
@@ -32,7 +32,7 @@
                      </div>
                     <div class="add-tech d-flex flex-row">
                     <input [(ngModel)]="userStack" type="text" class="form-control p-2">
-                    <div class="add-tech-btn w-auto px-3 d-flex justify-content-center align-items-center" (click)="addStack()">Adicionar</div>
+                    <div class="add-tech-btn w-auto px-3 d-flex justify-content-center align-items-center btn btn-primary" (click)="addStack()">Adicionar</div>
                     </div>
                 </div>    
 

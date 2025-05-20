@@ -1,8 +1,5 @@
 <div class="project-preview m-1">
     <div class="w-100 p-2 project-title bg-primary">
-        <p class="mb-0 text-white">{{project.name}}</p>
-    </div>
-    <div class="w-100 p-2 project-description overflow-auto">
-        <p class="description mb-0">{{project.description}}</p>
+        <p *ngIf="project.name" class="mb-0 text-white">{{project.name}}</p>
     </div>
 </div>

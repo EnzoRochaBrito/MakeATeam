@@ -1,10 +1,13 @@
-.project-title{
-    border-radius: .5rem .5rem 0 0;
-}
-.project-description{
-    border-radius: 0 0 .5rem .5rem;
-    background-color: #dfecff50;
-    .description{
-        text-wrap: wrap;
+.project-preview {
+    transition: transform .2s, box-shadow .2s;
+    &:hover{
+        transform: translateX(-5px);
+        box-shadow: 0 5px 5px rgba(0,0,0,0.3)
     }
+
+}
+
+.project-title{
+    border-radius: .5rem;
+    overflow-x: auto;
 }
