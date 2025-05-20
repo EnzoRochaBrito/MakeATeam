@@ -111,9 +111,8 @@ export class ProjectService {
     
     const projectUid = project.uid
 
-    if (project.members.length == project.vancancy){
+    if (project.members.length == (project.vancancy-1)){
       await this.closeProject(projectUid)
-      return new Error('Quantidade máxima de usuários atingida');
     }
 
     const projectRef = doc(this.firestore, 'project', projectUid);

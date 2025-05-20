@@ -29,16 +29,20 @@ export class AuthService {
       .then( async (cred) => {
         await updateProfile(cred.user, {displayName: user.name});
 
-        const profile = doc(this.firestore, 'user', cred.user.uid);
-
-        sessionStorage.setItem("profile", JSON.stringify(profile))
+        const createProfile = doc(this.firestore, 'user', cred.user.uid);
         
-        await setDoc(profile, {
+        await setDoc(createProfile, {
           name: user.name,
           email: user.email,
           createdAt: Timestamp.now(),
           uid: cred.user.uid
         });
+
+        const profileRef = doc(this.firestore, 'user', cred.user.uid);
+        const snapshot = await getDoc(profileRef)
+        const profile = snapshot.data() as UserProfileDTO;
+        
+        sessionStorage.setItem("profile", JSON.stringify(profile))
 
         return cred
       })

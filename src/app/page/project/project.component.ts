@@ -58,7 +58,6 @@ export class ProjectComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    console.log(this.uid)
     await this.userService.saveProject(this.uid, this.currentUserUid)
     return
   }

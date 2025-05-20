@@ -39,8 +39,6 @@ export class UserComponent implements OnInit {
 
     (currentUid === this.uid) ? this.itsCurrentUser = true : this.itsCurrentUser = false;
 
-    // localStorage.setItem("profile", JSON.stringify(this.userProfile))
-    //JSON.parse(localStorage.getItem("profile")!)
   }
 
   removeStack(index: number){

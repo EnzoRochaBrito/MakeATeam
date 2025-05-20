@@ -23,9 +23,11 @@ export class MyProjectComponent implements OnInit {
 
   async ngOnInit() {
     this.userProjectsId = JSON.parse(sessionStorage.getItem('profile')!).projectsOwned
-    for (let uid of this.userProjectsId){
-      const project: ProjectTypeUid = await this.projectService.getProjectByUid(uid) as ProjectTypeUid;
-      this.userProjectsArr.push(project);
+    if (this.userProjectsId && this.userProjectsId.length > 0){
+      for (let uid of this.userProjectsId){
+        const project: ProjectTypeUid = await this.projectService.getProjectByUid(uid) as ProjectTypeUid;
+        this.userProjectsArr.push(project);
+      }
     }
   }
 
@@ -34,4 +36,7 @@ export class MyProjectComponent implements OnInit {
     this.requestsUid = this.userProjectsArr[id].memberRequest
   }
 
+  removeRequest(id: number){
+    this.requestsUid.splice(id, 1);
+  }
 }
