@@ -9,6 +9,7 @@ import { ProjectService } from '../../services/project.service';
 import { CreateProjectDTO } from '../../utils/dto/create.project.dto';
 import { RequiredTech } from '../../validators/required-project-tech.validator';
 import { RequiredExp } from '../../validators/required-project-exp.validator';
+import { StartDateValidator } from '../../validators/valid-date.validator';
 
 
 @Component({
@@ -27,8 +28,9 @@ export class CreateProjectComponent {
     description: 'Descrição é obrigatória.',
     category: 'Categoria é obrigatória.',
     experience: 'Nível de experiência é obrigatório.',
-    technologies: 'Adicione pelo menos uma tecnologia necessária.',
+    technologies: 'Adicione pelo menos uma tecnologia.',
     startDate: 'Data de início é obrigatória.',
+    invalidStartDate: 'Data não pode ser antes de hoje',
     estimatedTime: 'Duração precisa ser um número positivo.',
     vacancy: 'Informe ao menos uma vaga.',
     repository: 'Link inválido (opcional).'
@@ -48,7 +50,7 @@ export class CreateProjectComponent {
     vacancy:       new FormControl('',   [Validators.required, Validators.min(1)]),
     repository:    new FormControl('')
   },
-  [RequiredTech.requiredTech(this.techArr)] 
+  [RequiredTech.requiredTech(this.techArr), StartDateValidator.notInPast()] 
 );
 
   projectCategory = [

@@ -9,3 +9,11 @@
 .input-info {
     transform: translateY(15px);
 }
+
+.to-login{
+    cursor: pointer;
+    transition: filter .2s;
+    &:hover{
+        filter: brightness(50%);
+    }
+}

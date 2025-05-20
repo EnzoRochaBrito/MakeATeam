@@ -41,3 +41,7 @@
     gap: 1.5rem;
     padding: 2rem;
 }
+
+.filter-btn{
+    min-width: 120px;
+}

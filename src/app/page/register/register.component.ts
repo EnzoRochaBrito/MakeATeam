@@ -5,13 +5,13 @@ import { CustomInputAuthComponent } from '../../components/custom-input-auth/cus
 import { CommonModule } from '@angular/common';
 import { EqualPasswordValidator } from '../../validators/equal-password.validator';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { RegisterDTO } from '../../utils/dto/auth.dto';
 import { take } from 'rxjs';
 
 @Component({
   selector: 'app-register',
-  imports: [AuthTemplateComponent, ReactiveFormsModule, CustomInputAuthComponent, CommonModule],
+  imports: [AuthTemplateComponent, ReactiveFormsModule, CustomInputAuthComponent, CommonModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

@@ -1,10 +1,12 @@
+
+
 .project-preview {
     transition: transform .2s, box-shadow .2s;
+    border-radius: .5rem;
     &:hover{
         transform: translateX(-5px);
         box-shadow: 0 5px 5px rgba(0,0,0,0.3)
     }
-
 }
 
 .project-title{

@@ -58,7 +58,6 @@
           <div class="necessary-tech text-start">
             <div class="input-info d-flex flex-row justify-content-between w-100">
               <p class="mb-0">Tecnologias Necessárias*</p>
-              <p class="mb-0 text-danger fw-light d-inline text-nowrap" *ngIf="createProjectForm.touched && createProjectForm.hasError('requiredTech')">{{ controlWarn.technologies }}</p>
             </div>
             <div class="form-control p-2">
               <div class="tags p-0 d-flex flex-row align-items-center gap-2 overflow-x-auto mb-1">
@@ -68,41 +67,43 @@
                 <input formControlName="technologies" type="text" class="form-control p-2">
                 <div class="add-tech-btn w-auto px-3 d-flex justify-content-center align-items-center" (click)="addTag()">Adicionar</div>
               </div>
+              <p class="mb-0 text-danger fw-light d-inline text-nowrap" *ngIf="createProjectForm.touched && createProjectForm.hasError('requiredTech')">{{ controlWarn.technologies }}</p>
             </div>
           </div>
           <div class="row">
             <div class="col-12 col-md-4 mb-3 mb-md-0 text-start">
               <div class="input-info d-flex flex-row justify-content-between w-100">
                 <p class="mb-0">Data de início*</p>
-                <p class="mb-0 text-danger fw-light d-inline text-nowrap" *ngIf="createProjectForm.controls['startDate'].touched && createProjectForm.controls['startDate'].invalid">{{ controlWarn.startDate }}</p>
               </div>
               <custom-input-form
-                placeholder="dd/mm/yyyy"
-                type="date"
-                [control]="createProjectForm.controls.startDate"
+              placeholder="dd/mm/yyyy"
+              type="date"
+              [control]="createProjectForm.controls.startDate"
               ></custom-input-form>
+              <p class="mb-0 text-danger fw-light d-inline text-nowrap" *ngIf="createProjectForm.controls['startDate'].touched && createProjectForm.controls['startDate'].hasError('required')">{{ controlWarn.startDate }}</p>
+              <p class="mb-0 text-danger fw-light d-inline text-nowrap" *ngIf="createProjectForm.controls['startDate'].touched && createProjectForm.controls['startDate'].hasError('pastDate')">{{ controlWarn.invalidStartDate }}</p>
             </div>
             <div class="col-12 col-md-4 mb-3 text-start">
               <div class="input-info d-flex flex-row justify-content-between w-100">
                 <p class="mb-0">Duração estimada (semanas)</p>
-                <p class="mb-0 text-danger fw-light d-inline text-nowrap" *ngIf="createProjectForm.controls['estimatedTime'].touched && createProjectForm.controls['estimatedTime'].invalid">{{ controlWarn.estimatedTime }}</p>
               </div>
               <custom-input-form
-                placeholder=""
-                type="number"
-                [control]="createProjectForm.controls.estimatedTime"
+              placeholder=""
+              type="number"
+              [control]="createProjectForm.controls.estimatedTime"
               ></custom-input-form>
+              <p class="mb-0 text-danger fw-light d-inline text-nowrap" *ngIf="createProjectForm.controls['estimatedTime'].touched && createProjectForm.controls['estimatedTime'].invalid">{{ controlWarn.estimatedTime }}</p>
             </div>
             <div class="col-12 col-md-4 text-start">
               <div class="input-info d-flex flex-row justify-content-between w-100">
                 <p class="mb-0">Vagas*</p>
-                <p class="mb-0 text-danger fw-light d-inline text-nowrap" *ngIf="createProjectForm.controls['vacancy'].touched && createProjectForm.controls['vacancy'].invalid">{{ controlWarn.vacancy }}</p>
               </div>
               <custom-input-form
-                placeholder=""
-                type="number"
-                [control]="createProjectForm.controls.vacancy"
+              placeholder=""
+              type="number"
+              [control]="createProjectForm.controls.vacancy"
               ></custom-input-form>
+              <p class="mb-0 text-danger fw-light d-inline text-nowrap" *ngIf="createProjectForm.controls['vacancy'].touched && createProjectForm.controls['vacancy'].invalid">{{ controlWarn.vacancy }}</p>
             </div>
           </div>
           <div class="text-start">

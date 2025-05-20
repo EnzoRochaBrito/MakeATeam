@@ -27,8 +27,10 @@
             icon="./login/key.svg"
           ></custom-auth-input>
         </div>
-      
-        <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="loginForm.invalid">Logar</button>
+        <div class="actions d-flex flex-column gap-1 align-items-center">
+          <button class="submit-btn btn btn-primary mt-3 mb-2" type="submit" [disabled]="loginForm.invalid">Logar</button>
+          <p class="no-cad mb-0 text-primary d-inline-block" [routerLink]="'/register'">Não sou cadastrado!</p>
+        </div>
       </form>
       
 </app-auth>

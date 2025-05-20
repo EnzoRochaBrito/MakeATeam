@@ -3,14 +3,14 @@ import { AuthTemplateComponent } from '../../template/auth/auth.component';
 import { CustomInputAuthComponent } from '../../components/custom-input-auth/custom-input.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginDTO } from '../../utils/dto/auth.dto';
 import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
-  imports: [AuthTemplateComponent, CustomInputAuthComponent, ReactiveFormsModule, CommonModule],
+  imports: [AuthTemplateComponent, CustomInputAuthComponent, ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

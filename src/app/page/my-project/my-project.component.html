@@ -6,7 +6,7 @@
                 <div class="projects col-md-8 col-12 p-1">
                     <h1 class="mx-2 title fs-3 text-primary">Projetos</h1>
                     <section class="projects w-100 p-1 d-flex flex-column gap-2">
-                        <project-preview class="project-p" *ngFor="let project of userProjectsArr; let i = index" [uid]="project.uid" (click)="getUsers(i)"></project-preview>
+                        <project-preview class="project-p" *ngFor="let project of userProjectsArr; let i = index" [uid]="project.uid" (click)="getUsers(i)" [isMyProject]="true"></project-preview>
                     </section>
                 </div>
                 <div class="requests col-md-4 col-12 p-1">

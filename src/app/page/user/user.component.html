@@ -30,7 +30,7 @@
                     <div *ngIf="userProfile.stack" class="tags p-0 d-flex flex-row align-items-center gap-2 overflow-x-auto mb-1">
                         <p class="tag" *ngFor="let stack of userProfile.stack; let i = index">{{ stack }} <span class="remove-tag" (click)="removeStack(i)">x</span></p>
                      </div>
-                    <div class="add-tech d-flex flex-row">
+                    <div class="add-tech d-flex flex-row gap-2">
                     <input [(ngModel)]="userStack" type="text" class="form-control p-2">
                     <div class="add-tech-btn w-auto px-3 d-flex justify-content-center align-items-center btn btn-primary" (click)="addStack()">Adicionar</div>
                     </div>

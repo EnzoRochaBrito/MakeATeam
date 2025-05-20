@@ -9,3 +9,15 @@
 .input-info {
     transform: translateY(15px);
 }
+
+.submit-btn{
+    width: 120px
+}
+
+.no-cad{
+    cursor: pointer;
+    transition: filter .2s;
+    &:hover{
+        filter: brightness(50%);
+    }
+}

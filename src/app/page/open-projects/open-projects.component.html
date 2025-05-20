@@ -25,14 +25,13 @@
                     <option value="4">IoT</option>
                     <option value="5">Outros</option>
                 </select>
+                <div class="sorting d-flex flex-row gap-2 align-items-center w-auto">
+                    <select [(ngModel)]="order" name="" id="" class="form-select">
+                        <option value="desc">Mais recente</option>
+                        <option value="asc">Mais antigo</option>
+                    </select>
+                </div>
                 <button class="btn btn-primary filter-btn" (click)="filterSearch()">Filtrar</button>
-            </div>
-            <div class="sorting d-flex flex-row gap-2 align-items-center w-auto">
-                <p class="mb-0 d-none d-md-block">Ordernar por: </p>
-                <select [(ngModel)]="order" name="" id="" class="form-select">
-                    <option value="desc">Mais recente</option>
-                    <option value="asc">Mais antigo</option>
-                </select>
             </div>
         </div>
     </section>

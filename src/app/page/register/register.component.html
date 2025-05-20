@@ -29,6 +29,9 @@
             </div>
             <custom-auth-input class="m-2" placeholder="Repita a sua senha" inputType="password" [control]="registerForm.controls['passwordTwo']" icon="./login/key2.svg"></custom-auth-input>
         </div>
-        <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="registerForm.invalid">Cadastrar</button>
+        <div class="actions d-flex flex-column gap-1 align-items-center">
+            <button class="submit-btn btn btn-primary mt-4" type="submit" [disabled]="registerForm.invalid">Cadastrar</button>
+            <p class="to-login mb-0 text-primary d-inline-block" [routerLink]="'/login'">Já possuo cadastro!</p>
+        </div>
     </form>
 </app-auth> 
