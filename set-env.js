@@ -25,7 +25,7 @@ const requiredEnvVars = [
 ];
 
 // Valida se todas as variáveis existem e captura seus valores
-const envVars: Record<string, string> = {};
+const envVars = {};
 
 for (const key of requiredEnvVars) {
   const value = process.env[key];
@@ -33,6 +33,7 @@ for (const key of requiredEnvVars) {
     console.error(`❌ ERRO: Variável de ambiente ${key} não está definida!`);
     process.exit(1);
   }
+  console.log(value)
   envVars[key] = value;
 }
 
@@ -40,7 +41,7 @@ for (const key of requiredEnvVars) {
 const envConfig = `
 export const environment = {
   production: true,
-  firebase: {
+  firebaseConfig: {
     apiKey: '${envVars['FIREBASE_API_KEY']}',
     authDomain: '${envVars['FIREBASE_AUTH_DOMAIN']}',
     projectId: '${envVars['FIREBASE_PROJECT_ID']}',
