@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { UserServiceService } from '../../services/user-service.service';
 import { IUserProfile, UserProfileDTO } from '../../utils/dto/user.dto';
@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectTypeUid } from '../../utils/type/project.type';
 import { ProjectPreviewComponent } from '../../widget/project-preview/project-preview.component';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -23,6 +24,8 @@ export class UserComponent implements OnInit {
   memberOfProjects!: ProjectTypeUid[]
   itsCurrentUser!: boolean
   userStack: string = '';
+
+  authService: AuthService = inject(AuthService)
 
   constructor(readonly route: ActivatedRoute, readonly userService: UserServiceService){}
 
@@ -62,5 +65,8 @@ export class UserComponent implements OnInit {
     await this.userService.updateUser(this.userProfile)
   }
 
+  logout(){
+    this.authService.logout()
+  }
 
 }

@@ -16,3 +16,7 @@
     gap: 1.5rem;
     padding: 2rem;
 }
+
+.logout-btn, .save-btn, .add-tech-btn{
+    min-width: 120px;
+}

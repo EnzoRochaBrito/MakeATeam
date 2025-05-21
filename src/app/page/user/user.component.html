@@ -1,7 +1,7 @@
 <app-standart>
     <div class="user-wrapper mx-auto p-md-3 p-0 mb-md-2 mb-0">
         <div class="user bg-white px-2 py-4 shadow-sm position-relative">
-            <button *ngIf="itsCurrentUser" class="position-absolute top-0 end-0 m-3 btn btn-success" (click)="saveUser()">Salvar</button>
+            <button *ngIf="itsCurrentUser" class="save-btn position-absolute top-0 end-0 m-3 btn btn-success" (click)="saveUser()">Salvar</button>
             <h1 class="user-name text-primary fs-3 mb-3">
                 {{userProfile.name}}
             </h1>
@@ -69,6 +69,9 @@
                     </section>
                 </div>
                 <ng-template #no_saved>Nenhum projeto salvo</ng-template>
+            </div>
+            <div class="logout-sec d-flex flex-row px-3 justify-content-end">
+                <button (click)="logout()" *ngIf="itsCurrentUser" class="logout-btn btn btn-danger">Logout</button>
             </div>
         </div>
     </div>

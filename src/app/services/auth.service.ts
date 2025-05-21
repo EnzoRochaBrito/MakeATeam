@@ -6,6 +6,7 @@ import { LoginDTO, RegisterDTO } from '../utils/dto/auth.dto';
 import { Firestore, doc, setDoc, getDoc, Timestamp } from '@angular/fire/firestore';
 import { UserProfileDTO } from '../utils/dto/user.dto';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
   readonly currentUser = signal<User | null>(null); 
   readonly isLogged = signal(false);
 
-  constructor(readonly toastr: ToastrService) {
+  constructor(readonly toastr: ToastrService, readonly router: Router) {
     onAuthStateChanged(this.auth, user => {
       this.currentUser.set(user);
       this.isLogged.set(!!user)
@@ -96,6 +97,9 @@ export class AuthService {
 
   logout(){
     this.toastr.info('Deslogando')
+    sessionStorage.clear()
+    localStorage.clear()
+    this.router.navigate(['/login'])
     return from(signOut(this.auth));
   }
 
