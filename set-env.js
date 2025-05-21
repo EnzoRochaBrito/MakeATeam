@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Define o caminho da pasta e arquivo
-const targetDir = resolve(__dirname, './src/environments');
+const targetDir = resolve(__dirname, './src/app/environments');
 const targetPath = resolve(targetDir, 'environment.prod.ts');
 
 // Cria o diretório caso não exista
