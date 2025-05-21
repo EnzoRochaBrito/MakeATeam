@@ -2,7 +2,7 @@
 
 .big-text{
 
-    margin: calc(var(--header-height) + 5rem) 0 5% 0;
+    margin: calc(var(--header-height) + 5rem) 0 2% 0;
     
     #l1{
         animation: appear_left 1.5s;
@@ -65,4 +65,16 @@
 
 .questions .row{
     border-radius: .5rem;
+}
+
+.side-content {
+    max-height: 30vh;
+}
+
+.images {
+    transition: scale .2s, transform .2s;
+    &:hover{
+        scale: 1.05;
+        transform: translateY(-5px);
+    }
 }
