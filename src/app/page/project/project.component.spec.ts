@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectComponent } from './project.component';
+import { beforeEach, describe, it } from 'node:test';
 
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
@@ -21,3 +22,7 @@ describe('ProjectComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+function expect(component: ProjectComponent) {
+  throw new Error('Function not implemented.');
+}
+

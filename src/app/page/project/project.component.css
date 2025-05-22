@@ -1,5 +1,5 @@
 .project-wrapper{
-    width: 60vw;
+    width: 65vw;
     min-width: 800px;
     @media screen and (max-width: 1200px) {
         min-width: 0;
@@ -59,4 +59,10 @@
 
 .creator{
     cursor: pointer;
+}
+
+.member-name{
+    cursor: pointer;
+    max-height: min-content;
+    text-wrap: nowrap;
 }

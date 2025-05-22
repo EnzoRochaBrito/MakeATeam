@@ -1,11 +1,9 @@
 .user-request{
     border-radius: .5rem;
-    background-color: var(--var-primary);
 }
 
 .username {
     cursor: pointer;
-    color: white;
     max-width: 50%;
     text-wrap: nowrap;
     overflow-x: auto;

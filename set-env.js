@@ -33,7 +33,6 @@ for (const key of requiredEnvVars) {
     console.error(`❌ ERRO: Variável de ambiente ${key} não está definida!`);
     process.exit(1);
   }
-  console.log(value)
   envVars[key] = value;
 }
 

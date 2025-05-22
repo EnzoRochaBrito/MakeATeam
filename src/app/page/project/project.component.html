@@ -1,8 +1,8 @@
 <app-standart>
 
-    <div class="project-wrapper mx-auto p-md-3 p-0 mb-md-2 mb-0">
-        <div class="project bg-white px-2 py-4 shadow-sm position-relative">
-            <p *ngIf="available > 0; else closed_project" class="available mb-0 text-success position-absolute top-0 end-0 m-3">{{ available }} vagas disponíveis</p>
+    <div class="project-wrapper mx-auto p-md-3 p-0 mb-md-2 mb-0 row">
+        <div class="project col-12 col-md-8 bg-white px-2 py-4 shadow-sm position-relative">
+            <p *ngIf="available > 0; else closed_project" class="available mb-0 text-success position-absolute top-0 end-0 m-3">{{ available }} vaga<span *ngIf="available > 1">s</span> disponíveis</p>
             <ng-template #closed_project>
                 <p class="available mb-0 text-danger position-absolute top-0 end-0 m-3">Sem vagas disponíveis</p>
             </ng-template>
@@ -74,6 +74,15 @@
                 <button (click)="saveProject()" class="btn btn-outline-secondary flex-grow-1">Salvar Projeto</button>
                 <button (click)="memberResquest()" [disabled]="!canAcess || !projectBody.open" class="btn btn-primary text-white flex-grow-1">Participar do Projeto</button>
             </div>
+        </div>
+        <div class="project-members col-12 col-md-4 mt-3 mt-md-0 bg-transparent">
+            <h1 class="project-members-title text-primary">
+                Membros
+            </h1>
+            <ul class="list-group list-group-flush">
+                <li class="tags member-name list-group-item text-primary overflow-x-auto" [routerLink]="['/user', creatorId]">{{projectBody.creator}} <span class="text-success">(Dono)</span></li>
+                <li class="tags member-name list-group-item text-primary overflow-x-auto" *ngFor="let m of members" [routerLink]="['/user', m[1]]">{{m[0]}}</li>
+              </ul>
         </div>
     </div>
 

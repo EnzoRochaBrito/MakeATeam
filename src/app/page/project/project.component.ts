@@ -7,6 +7,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { UserServiceService } from '../../services/user-service.service';
+import { IUserProfile } from '../../utils/dto/user.dto';
 
 @Component({
   selector: 'app-project',
@@ -22,11 +23,12 @@ export class ProjectComponent implements OnInit {
   canAcess!: boolean;
   currentUserUid!: string;
   available!: number;
+  members: [string, string][] = [];
 
   categoryMap = [
     'Desenvolvimento Web',
-    'Desenvolvimnto Mobile',
-    'Desenvolvimnto Desktop',
+    'Desenvolvimento Mobile',
+    'Desenvolvimento Desktop',
     'Multi-Plataforma',
     'Inteligência Artificial',
     'Desenvolvimnto de Jogos',
@@ -35,6 +37,7 @@ export class ProjectComponent implements OnInit {
     'Outros'
   ]
   currentCategory!: string;
+  
 
   constructor(readonly route: ActivatedRoute, readonly router: Router ,readonly projectService: ProjectService, readonly authSerice: AuthService, readonly userService: UserServiceService) { }
 
@@ -53,6 +56,10 @@ export class ProjectComponent implements OnInit {
     
     this.available = this.projectBody.vancancy - this.projectBody.members.length;
 
+    for (let memberUid of this.projectBody.members){
+      const memberName = await this.userName(memberUid);
+      this.members.push([memberName, memberUid])
+    }
 
   }
 
@@ -73,5 +80,9 @@ export class ProjectComponent implements OnInit {
     await this.projectService.sendMemberRequest(this.uid);
   }
   
+  async userName(uid: string){
+    const user = await this.userService.getUser(uid) as IUserProfile;
+    return user.name;
+  }
 
 }

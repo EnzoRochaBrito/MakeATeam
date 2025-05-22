@@ -7,6 +7,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginDTO } from '../../utils/dto/auth.dto';
 import { take } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ import { take } from 'rxjs';
 export class LoginComponent {
   title: string = "Login"
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, readonly toastr: ToastrService) {}
 
   loginForm =  new FormGroup({
     email:     new FormControl('', [Validators.email, Validators.required]),
@@ -39,7 +40,9 @@ export class LoginComponent {
     .pipe(take(1))
     .subscribe({
       next: (cred) => { this.router.navigate(['/open']); },
-      error: (err) => { console.log("Erro ao logar, ", err); }
+      error: (err) => { 
+        this.toastr.error('Credenciais de acesso inválidos')
+       }
     })
   }
 }

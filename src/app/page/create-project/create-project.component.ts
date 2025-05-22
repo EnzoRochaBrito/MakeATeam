@@ -54,13 +54,16 @@ export class CreateProjectComponent {
 );
 
   projectCategory = [
-    'Desenvolvimento Web',
-    'Desenvolvimento Mobile',
-    'Inteligência Artificial',
-    'Desenvolvimento de Jogos',
-    'IoT',
-    'Outros'
-  ];
+  'Desenvolvimento Web',
+  'Desenvolvimento Mobile',
+  'Desenvolvimento Desktop',
+  'Multi-Plataforma',
+  'Inteligência Artificial',
+  'Desenvolvimnto de Jogos',
+  'Realidade Aumentada',
+  'IoT',
+  'Outros'
+]
 
   experienceLevel = [
     'Iniciante',
