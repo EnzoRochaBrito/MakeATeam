@@ -14,9 +14,20 @@ import { OrderByDirection } from '@angular/fire/firestore';
   styleUrl: './open-projects.component.css'
 })
 export class OpenProjectsComponent implements OnInit {
-  tags = ['React', 'Node', 'Typescript', 'Typescript','Typescript']
 
   constructor(private readonly projectService: ProjectService) { }
+
+  projectCategory = [
+    'Desenvolvimento Web',
+    'Desenvolvimento Mobile',
+    'Desenvolvimento Desktop',
+    'Multi-Plataforma',
+    'Inteligência Artificial',
+    'Desenvolvimnto de Jogos',
+    'Realidade Aumentada',
+    'IoT',
+    'Outros'
+  ]
   
   experience:   string = '*';
   category:     string = '*';

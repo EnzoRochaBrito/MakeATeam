@@ -18,12 +18,7 @@
                 </select>
                 <select [(ngModel)]="category" name="" id="" class="form-select">
                     <option value="*">Todos os tipos</option>
-                    <option value="0">Desenvolvimento Web</option>
-                    <option value="1">Desenvolvimento Mobile</option>
-                    <option value="2">Inteligência Artificial</option>
-                    <option value="3">Desenvolvimento de Jogos</option>
-                    <option value="4">IoT</option>
-                    <option value="5">Outros</option>
+                    <option *ngFor="let cat of projectCategory; let i = index" [value]="i">{{cat}}</option>
                 </select>
                 <div class="sorting d-flex flex-row gap-2 align-items-center w-auto">
                     <select [(ngModel)]="order" name="" id="" class="form-select">
