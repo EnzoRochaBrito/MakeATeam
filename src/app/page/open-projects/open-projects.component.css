@@ -1,5 +1,6 @@
 .search-container{
     text-align: center;
+    background: #012E40;
     .title{
         font-weight: bold;
     }
@@ -25,8 +26,19 @@
     overflow-x: auto;
     -ms-touch-action: pan-x;
     touch-action: pan-x;
-    div select{
-        min-width: 200px;
+    background-color: #024959;
+    div {
+
+        button{
+            background-color: #0d47a1;
+            transition: color .2s;
+        }
+
+        select{
+            min-width: 200px;
+            background-color: #026773;
+            border: none;   
+        }
     }
     
 }
@@ -40,6 +52,7 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     padding: 2rem;
+    background-color: #fcfcfc;
 }
 
 .filter-btn{

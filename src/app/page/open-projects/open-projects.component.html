@@ -1,6 +1,6 @@
 <app-standart>
     <section class="top-content overflow-hidden">
-        <div class="search-container bg-primary d-flex flex-column justify-content-center align-items-center p-5">
+        <div class="search-container d-flex flex-column justify-content-center align-items-center p-5">
             <h2 class="title text-white mb-2">Encontre o projeto ideal para as suas habilidades.</h2>
             <p class="mb-4 text-white">Conecte-se com desenvolvedores que compartilham seus interesses</p>
             <div class="a d-flex">
@@ -10,23 +10,23 @@
         </div>
         <div class="filter-search px-4 shadow-sm d-flex flex-row justify-content-between align-items-center p-2 gap-3">
             <div class="filter-opt d-flex gap-2 align-items-center">
-                <select [(ngModel)]="experience" name="" id="" class="form-select">
+                <select [(ngModel)]="experience" name="" id="" class="text-white form-select">
                     <option value="*">Todos os níveis</option>
                     <option value="Iniciante">Iniciante</option>
                     <option value="Intermediário">Intermediário</option>
                     <option value="Avançado">Avançado</option>
                 </select>
-                <select [(ngModel)]="category" name="" id="" class="form-select">
+                <select [(ngModel)]="category" name="" id="" class="text-white form-select">
                     <option value="*">Todos os tipos</option>
                     <option *ngFor="let cat of projectCategory; let i = index" [value]="i">{{cat}}</option>
                 </select>
                 <div class="sorting d-flex flex-row gap-2 align-items-center w-auto">
-                    <select [(ngModel)]="order" name="" id="" class="form-select">
+                    <select [(ngModel)]="order" name="" id="" class="text-white form-select">
                         <option value="desc">Mais recente</option>
                         <option value="asc">Mais antigo</option>
                     </select>
                 </div>
-                <button class="btn btn-primary filter-btn" (click)="filterSearch()">Filtrar</button>
+                <button class="btn filter-btn text-white" (click)="filterSearch()">Filtrar</button>
             </div>
         </div>
     </section>

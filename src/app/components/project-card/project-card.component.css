@@ -7,7 +7,8 @@
     height: max-content;
     height: 100%;
     width: 100%;
-    border-radius: 0 0 5px 5px;
+    border-radius: 5px;
+    background: rgb(223, 222, 222);
 }
 
 .project-body{
