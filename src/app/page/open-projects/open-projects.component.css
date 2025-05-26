@@ -1,8 +1,6 @@
 .search-container{
+    background: var(--light-color);
     text-align: center;
-    .title{
-        font-weight: bold;
-    }
     .search-stack{
         display: inline;
         width: 600px;
@@ -25,10 +23,13 @@
     overflow-x: auto;
     -ms-touch-action: pan-x;
     touch-action: pan-x;
+    border-bottom: 1px solid #CED7E4;
     div select{
         min-width: 200px;
     }
-    
+    .filter-btn {
+        background-color: #0d47a1;
+    }
 }
 
 

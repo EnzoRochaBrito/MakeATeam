@@ -4,10 +4,13 @@
 }
 
 .project-card{
-    height: max-content;
-    height: 100%;
+    height: 333px;
     width: 100%;
     border-radius: 0 0 5px 5px;
+    transition: transform .2s;
+    &:hover{
+        transform: translateY(-10px);
+    }
 }
 
 .project-body{
@@ -26,7 +29,7 @@
 
 .description{
     max-height: 90px;
-    height: max-content;
+    height: 90px;
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;

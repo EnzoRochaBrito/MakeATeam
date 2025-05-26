@@ -1,8 +1,8 @@
 <app-standart>
     <section class="top-content overflow-hidden">
-        <div class="search-container bg-primary d-flex flex-column justify-content-center align-items-center p-5">
-            <h2 class="title text-white mb-2">Encontre o projeto ideal para as suas habilidades.</h2>
-            <p class="mb-4 text-white">Conecte-se com desenvolvedores que compartilham seus interesses</p>
+        <div class="search-container d-flex flex-column justify-content-center align-items-center p-5">
+            <h2 class="title text-primary-emphasis mb-2">Encontre o projeto ideal para as suas habilidades.</h2>
+            <p class="mb-4 text-primary-emphasis">Conecte-se com desenvolvedores que compartilham seus interesses</p>
             <div class="a d-flex">
                 <input [(ngModel)]="searchedTech" class="search-stack form-control" type="text" placeholder="Pesquise por tecnologias (React, Node, Python...)">
                 <button type="submit" class="search-btn px-4" (click)="searchByTech()">Buscar</button>
@@ -26,7 +26,7 @@
                         <option value="asc">Mais antigo</option>
                     </select>
                 </div>
-                <button class="btn btn-primary filter-btn" (click)="filterSearch()">Filtrar</button>
+                <button class="btn filter-btn text-white" (click)="filterSearch()">Filtrar</button>
             </div>
         </div>
     </section>
