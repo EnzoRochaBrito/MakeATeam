@@ -1,8 +1,12 @@
+<ng-template #one>
+    vaga disponível
+</ng-template>
+
 <app-standart>
 
     <div class="project-wrapper mx-auto p-md-3 p-0 mb-md-2 mb-0 row">
         <div class="project col-12 col-md-8 bg-white px-2 py-4 shadow-sm position-relative">
-            <p *ngIf="available > 0; else closed_project" class="available mb-0 text-success position-absolute top-0 end-0 m-3">{{ available }} <span *ngIf="available > 1">vagas disponíveis</span><span *ngIf="!available">vaga disponível</span></p>
+            <p *ngIf="available > 0; else closed_project" class="available mb-0 text-success position-absolute top-0 end-0 m-3">{{ available }} <span *ngIf="available > 1; else one">vagas disponíveis</span></p>
             <ng-template #closed_project>
                 <p class="available mb-0 text-danger position-absolute top-0 end-0 m-3">Sem vagas disponíveis</p>
             </ng-template>
@@ -80,8 +84,16 @@
                 Membros
             </h1>
             <ul class="list-group list-group-flush">
-                <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline" [routerLink]="['/user', creatorId]">{{projectBody.creator}} <span class="text-success">(Dono)</span></li>
-                <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline" *ngFor="let m of members" [routerLink]="['/user', m[1]]">{{m[0]}}</li>
+                <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline"><p class="mb-0 d-inline-block" [routerLink]="['/user', creatorId]">{{projectBody.creator}} <span class="text-success">(Dono)</span></p></li>
+                <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline d-flex flex-row align-items-center justify-content-between" *ngFor="let m of members">
+                    <p class="mb-0" [routerLink]="['/user', m[1]]">
+                        {{m[0]}}
+                    </p>
+                    <div class="beside-name d-flex flex-row align-items-center gap-2">
+                        <p class="mb-0 text-decoration-none">[TAG]</p>
+                        <img *ngIf="!canAcess" class="config-user" (click)="open()" src="others/gear.svg" alt="">
+                    </div>
+                </li>
               </ul>
         </div>
     </div>

@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { UserServiceService } from '../../services/user-service.service';
 import { IUserProfile } from '../../utils/dto/user.dto';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditMemberModalComponent } from '../../components/edit-member-modal/edit-member-modal.component';
 
 @Component({
   selector: 'app-project',
@@ -39,7 +41,7 @@ export class ProjectComponent implements OnInit {
   currentCategory!: string;
   
 
-  constructor(readonly route: ActivatedRoute, readonly router: Router ,readonly projectService: ProjectService, readonly authSerice: AuthService, readonly userService: UserServiceService) { }
+  constructor(readonly route: ActivatedRoute, readonly router: Router ,readonly projectService: ProjectService, readonly authSerice: AuthService, readonly userService: UserServiceService, readonly modalService: NgbModal) { }
 
   async ngOnInit(): Promise<void> {
     this.uid = this.route.snapshot.paramMap.get('uid')!;
@@ -83,6 +85,10 @@ export class ProjectComponent implements OnInit {
   async userName(uid: string){
     const user = await this.userService.getUser(uid) as IUserProfile;
     return user.name;
+  }
+
+  open(){
+    this.modalService.open(EditMemberModalComponent)
   }
 
 }

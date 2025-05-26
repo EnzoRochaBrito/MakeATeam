@@ -51,11 +51,17 @@ main {
 }
 
 .member-name{
-    cursor: pointer;
     max-height: min-content;
-    text-wrap: nowrap;  
+    p{
+        cursor: pointer;
+        text-wrap: nowrap;  
+    }
 }
 
 .req-btn{
     background: var(--deep-blue);
+}
+
+.config-user{
+    cursor: pointer;
 }

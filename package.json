@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^18.0.0",
+    "bootstrap": "^5.3.6",
     "dotenv": "^16.5.0",
     "firebase": "^11.7.3",
     "ngx-toastr": "^19.0.0",
