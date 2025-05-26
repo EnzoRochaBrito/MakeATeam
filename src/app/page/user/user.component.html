@@ -6,16 +6,16 @@
                 {{userProfile.name}}
             </h1>
             <div *ngIf="!itsCurrentUser" class="user-description mb-4">
-                <h1 class="description-title text-primary fs-4 fw-medium mb-1">Descrição</h1>
+                <h1 class="description-title text-primary-emphasis fs-4 fw-medium mb-1">Descrição</h1>
                 <p *ngIf="userProfile.description; else no_desc" class="mb-0 mx-2">{{userProfile.description}}</p>
                 <ng-template #no_desc>Sem descrição</ng-template>
             </div>
             <div *ngIf="itsCurrentUser" class="user-description mb-4">
-                <h1 class="description-title text-primary fs-4 fw-medium mb-1">Descrição</h1>
+                <h1 class="description-title text-primary-emphasis fs-4 fw-medium mb-1">Descrição</h1>
                 <textarea class="w-100 form-control" [(ngModel)]="userProfile.description"></textarea>
             </div>
             <div *ngIf="!itsCurrentUser" class="user-stack mb-4">
-                <h1 class="stack-title text-primary fs-4 fw-medium mb-1">Stack</h1>
+                <h1 class="stack-title text-primary-emphasis fs-4 fw-medium mb-1">Stack</h1>
                 
                     <div *ngIf="userProfile.stack && userProfile.stack.length > 0; else no_stack" class="tags p-0 d-flex flex-row align-items-center gap-2 mb-4 flex-wrap">
                         <p *ngFor="let tag of userProfile.stack" class="tag">{{tag}}</p>
@@ -24,7 +24,7 @@
                 <ng-template #no_stack>Sem stack</ng-template>
             </div>
             <div *ngIf="itsCurrentUser" class="user-stack mb-4">
-                <h1 class="stack-title text-primary fs-4 fw-medium mb-1">Stack</h1>
+                <h1 class="stack-title text-primary-emphasis fs-4 fw-medium mb-1">Stack</h1>
                 
                 <div class="form-control p-2">
                     <div *ngIf="userProfile.stack" class="tags p-0 d-flex flex-row align-items-center gap-2 overflow-x-auto mb-1">
@@ -32,15 +32,15 @@
                      </div>
                     <div class="add-tech d-flex flex-row gap-2">
                     <input [(ngModel)]="userStack" type="text" class="form-control p-2">
-                    <div class="add-tech-btn w-auto px-3 d-flex justify-content-center align-items-center btn btn-primary" (click)="addStack()">Adicionar</div>
+                    <div class="add-tech-btn w-auto px-3 d-flex justify-content-center align-items-center btn text-white" (click)="addStack()">Adicionar</div>
                     </div>
                 </div>    
 
             </div>
             <div class="user-owned mb-4">
-                <h1 class="owned-title text-primary fs-4 fw-medium mb-1">Projetos</h1>
+                <h1 class="owned-title text-primary-emphasis fs-4 fw-medium mb-1">Projetos</h1>
                 <div *ngIf="userProfile.projectsOwned; else no_owned" class="project-owned">
-                    <section class="projects-grid d-grid p-2">
+                    <section class="projects-grid d-grid p-0">
                     <a *ngFor="let ow of userProfile.projectsOwned" [routerLink]="['/project', ow]">
                         <project-preview [uid]="ow"></project-preview>
                     </a>
@@ -49,9 +49,9 @@
                 <ng-template #no_owned>Este usuário não possui projetos</ng-template>
             </div>
             <div class="user-memberof mb-4">
-                <h1 class="memberof-title text-primary fs-4 fw-medium mb-1">Participando</h1>
+                <h1 class="memberof-title text-primary-emphasis fs-4 fw-medium mb-1">Participando</h1>
                 <div *ngIf="userProfile.memberOf; else no_memberof" class="project-memberof">
-                    <section class="projects-grid d-grid p-2">
+                    <section class="projects-grid d-grid p-1">
                     <a *ngFor="let pj of userProfile.memberOf" [routerLink]="['/project', pj]">
                         <project-preview [uid]="pj"></project-preview>
                     </a>
@@ -60,9 +60,9 @@
                 <ng-template #no_memberof>Nenhum projeto</ng-template>
             </div>
             <div class="user-saved mb-4">
-                <h1 class="saved-title text-primary fs-4 fw-medium mb-1">Salvos</h1>
+                <h1 class="saved-title text-primary-emphasis fs-4 fw-medium mb-1">Salvos</h1>
                 <div *ngIf="userProfile.savedProjects; else no_saved" class="project-saved">
-                    <section class="projects-grid d-grid p-2">
+                    <section class="projects-grid d-grid p-1">
                     <a *ngFor="let sav of userProfile.savedProjects" [routerLink]="['/project', sav]">
                         <project-preview [uid]="sav"></project-preview>
                     </a>

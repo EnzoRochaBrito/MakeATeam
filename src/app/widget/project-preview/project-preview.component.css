@@ -1,6 +1,9 @@
 
 
 .project-preview {
+    div{
+        background: var(--deep-blue);
+    }
     transition: transform .2s, box-shadow .2s;
     border-radius: .5rem;
     &:hover{
@@ -10,6 +13,6 @@
 }
 
 .project-title{
-    border-radius: .5rem;
+    border-radius: 5px;
     overflow-x: auto;
 }

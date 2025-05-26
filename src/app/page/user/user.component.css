@@ -20,3 +20,11 @@
 .logout-btn, .save-btn, .add-tech-btn{
     min-width: 120px;
 }
+
+.add-tech-btn{
+    background: var(--deep-blue);
+}
+
+.remove-tag {
+    cursor: pointer;
+}
