@@ -6,7 +6,7 @@
             <ng-template #closed_project>
                 <p class="available mb-0 text-danger position-absolute top-0 end-0 m-3">Sem vagas disponíveis</p>
             </ng-template>
-            <h1 *ngIf="projectBody.name" class="title text-primary fw-bold fs-3 mt-md-0 mt-4">
+            <h1 *ngIf="projectBody.name" class="title text-primary-emphasis fw-medium fs-3 mt-md-0 mt-4">
                 {{projectBody.name}}
             </h1>
             <div class="project-info d-flex flex-row justify-content-between">
@@ -21,23 +21,23 @@
             </div>
             <hr>
             <div class="project-description">
-                <h1 class="title mx-1 text-primary fw-bold fs-3">Descrição</h1>
+                <h1 class="title mx-1 text-primary-emphasis fw-medium fs-3">Descrição</h1>
                 <p class="description">
                     {{projectBody.description}}
                 </p>
             </div>
             <div class="project-detail">
-                <h1 class="title mx-1 text-primary fw-bold fs-3">Detalhes do Projeto</h1>
+                <h1 class="title mx-1 text-primary-emphasis fw-medium fs-3">Detalhes do Projeto</h1>
                 <div class="row px-3 py-1">
                     <div class="detail-cell-wrapper col-md-6 col-12 p-1 bg-white">
                         <div class="detail-cell p-2">
-                            <p class="mb-0 section-name d-block fw-bold">Data de Início</p>
+                            <p class="mb-0 section-name d-block fw-medium">Data de Início</p>
                             <p class="mb-0 info">{{projectBody.startDate}}</p>
                         </div>
                     </div>
                     <div class="detail-cell-wrapper col-md-6 col-12 p-1 bg-white">
                         <div class="detail-cell p-2">
-                            <p class="mb-0 section-name d-block fw-bold">Duração estimada (semanas)</p>
+                            <p class="mb-0 section-name d-block fw-medium">Duração estimada (semanas)</p>
                             <p class="mb-0 info">{{projectBody.estimtedTime}}</p>
                         </div>
                     </div>
@@ -45,13 +45,13 @@
                 <div class="row px-3 py-1">
                     <div class="detail-cell-wrapper col-md-6 col-12 p-1 bg-white">
                         <div class="detail-cell p-2">
-                            <p class="mb-0 section-name d-block fw-bold">Vagas</p>
+                            <p class="mb-0 section-name d-block fw-medium">Vagas</p>
                             <p class="mb-0 info">{{projectBody.vancancy}}</p>
                         </div>
                     </div>
                     <div class="detail-cell-wrapper col-md-6 col-12 p-1 bg-white">
                         <div class="detail-cell p-2">
-                            <p class="mb-0 section-name d-block fw-bold">Repositório</p>
+                            <p class="mb-0 section-name d-block fw-medium">Repositório</p>
                             <a *ngIf="projectBody.repository; else no_repo" [href]="projectBody.repository" target="_blank"><p class="mb-0 info">{{projectBody.repository}}</p></a>
                             <ng-template #no_repo><p class="mb-0">Sem repositório</p></ng-template>
                         </div>
@@ -59,29 +59,29 @@
                 </div>
             </div>
             <div class="project-tech">
-                <h1 class="title mx-1 text-primary fw-bold fs-3 mb-3">Tecnologias Utilizadas</h1>
+                <h1 class="title mx-1 text-primary-emphasis fw-medium fs-3 mb-3">Tecnologias Utilizadas</h1>
                 <div class="tags p-0 d-flex flex-row align-items-center gap-2 mb-4 flex-wrap">
                     <p *ngFor="let tech of projectBody.technologies" class="tag">{{tech}}</p>
                 </div>
             </div>
             <div class="project-experience">
-                <h1 class="title mx-1 text-primary fw-bold fs-4 mb-3">Nível de Experiência</h1>
+                <h1 class="title mx-1 text-primary-emphasis fw-medium fs-4 mb-3">Nível de Experiência</h1>
                 <div class="experience-tags d-flex flex-row align-items-center mb-3">
-                    <span *ngFor="let exp of projectBody.experience" class="mx-1 px-2" [id]="exp">{{exp}}</span>
+                    <span *ngFor="let exp of projectBody.experience" class="mx-1 px-2">{{exp}}</span>
                 </div>
             </div>
             <div class="project-actions d-flex flex-md-row flex-column-reverse gap-2">
                 <button (click)="saveProject()" class="btn btn-outline-secondary flex-grow-1">Salvar Projeto</button>
-                <button (click)="memberResquest()" [disabled]="!canAcess || !projectBody.open" class="btn btn-primary text-white flex-grow-1">Participar do Projeto</button>
+                <button (click)="memberResquest()" [disabled]="!canAcess || !projectBody.open" class="req-btn btn text-white flex-grow-1">Participar do Projeto</button>
             </div>
         </div>
         <div class="project-members col-12 col-md-4 mt-3 mt-md-0 bg-transparent">
-            <h1 class="project-members-title text-primary">
+            <h1 class="project-members-title text-primary-emphasis">
                 Membros
             </h1>
             <ul class="list-group list-group-flush">
-                <li class="tags member-name list-group-item text-primary overflow-x-auto" [routerLink]="['/user', creatorId]">{{projectBody.creator}} <span class="text-success">(Dono)</span></li>
-                <li class="tags member-name list-group-item text-primary overflow-x-auto" *ngFor="let m of members" [routerLink]="['/user', m[1]]">{{m[0]}}</li>
+                <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline" [routerLink]="['/user', creatorId]">{{projectBody.creator}} <span class="text-success">(Dono)</span></li>
+                <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline" *ngFor="let m of members" [routerLink]="['/user', m[1]]">{{m[0]}}</li>
               </ul>
         </div>
     </div>

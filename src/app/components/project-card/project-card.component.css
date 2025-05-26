@@ -18,7 +18,7 @@
 }
 
 .title{
-    color: var(--bs-primary);
+    color: var(--deep-blue);
     font-weight: 600;
 }
 
@@ -41,4 +41,9 @@
 .creator{
     color: var(--bs-gray);
     font-size: 1rem;
+    transition: color .2s;
+    cursor: pointer;
+    &:hover {
+        color: var(--bs-primary);
+    }
 }

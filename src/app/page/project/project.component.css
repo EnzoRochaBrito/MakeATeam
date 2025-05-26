@@ -1,5 +1,9 @@
+main {
+    background: black;
+}
+
 .project-wrapper{
-    width: 65vw;
+    width: 80vw;
     min-width: 800px;
     @media screen and (max-width: 1200px) {
         min-width: 0;
@@ -19,8 +23,8 @@
 }
 
 .detail-cell {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 1rem;
+    background-color: var(--grayish-color);
+    border-radius: 5px;
 }
 
 .experience-tags {
@@ -28,25 +32,10 @@
         transition: transform .2s;
         border-width: 1px;
         border-style: solid;
-        border-radius: 1rem;
+        border-radius: 5px;
         &:hover{
             transform: translateY(-2px);
         }
-    }
-
-    #iniciante {
-        border-color: var(--bs-green);
-        color: var(--bs-green);
-    }
-
-    #intermediario {
-        border-color: var(--bs-yellow);
-        color: var(--bs-yellow);
-    }
-
-    #avancado {
-        border-color: var(--bs-purple);
-        color: var(--bs-purple);
     }
 }
 
@@ -64,5 +53,9 @@
 .member-name{
     cursor: pointer;
     max-height: min-content;
-    text-wrap: nowrap;
+    text-wrap: nowrap;  
+}
+
+.req-btn{
+    background: var(--deep-blue);
 }

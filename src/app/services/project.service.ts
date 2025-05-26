@@ -142,11 +142,17 @@ export class ProjectService {
 
     try {
       const projectRef = doc(this.firestore, 'project', projectUid);
+      const userRef    = doc(this.firestore, 'user', userUid);
   
       await updateDoc(projectRef, {
         memberRequest: arrayRemove(userUid),
         members: arrayUnion(userUid)
       });
+
+      await updateDoc(userRef, {
+        memberOf: arrayUnion(projectUid)
+      })
+
       this.toastr.info('Usuário adicionado com sucesso!')
     } catch (error) {
       

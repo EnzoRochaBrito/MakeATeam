@@ -3,11 +3,15 @@
     --footer-height: 30px;
     --header-height: 55px;
     --light-color: #cedff8;
+    --grayish-color: #CED7E4;
+    --not-black: #1A202C;
+    --deep-blue: #0d47a1;
 }
 
 body{
     overflow-x: hidden;
     font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--not-black);
 }
 
 .underline_eff{

@@ -2,7 +2,7 @@
     <div class="project-body p-4 d-flex flex-column h-100">
         <div class="flex-grow-1">
             <h5 class="title mb-1">{{title}}</h5>
-            <h5 class="creator mb-2">{{creator}}</h5>
+            <h5 class="creator mb-2" [routerLink]="['/user', creatorUid]">{{creator}}</h5>
             <div class="description mb-2 "><p class="mb-0 d-inline text-primary-emphasis">{{description}}</p></div>
             <div class="tags p-0 d-flex flex-row align-items-center gap-2 overflow-x-auto">
                 <p class="tag" *ngFor="let tag of tags">{{tag}}</p>

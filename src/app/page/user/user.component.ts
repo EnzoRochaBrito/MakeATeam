@@ -33,6 +33,8 @@ export class UserComponent implements OnInit {
 
     this.uid = this.route.snapshot.paramMap.get('uid')!;
     this.userProfile = await this.userService.getUser(this.uid) as IUserProfile;
+
+    console.log(this.userProfile)
     
     if (!this.userProfile.description){
       this.userProfile.description = ""
