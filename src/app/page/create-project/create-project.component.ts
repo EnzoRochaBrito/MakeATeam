@@ -96,6 +96,8 @@ export class CreateProjectComponent {
     const tar: HTMLInputElement = event.target as HTMLInputElement;
     const value: number = Number(tar.value);
     
+    tar.value = ''
+
     this.expArr.push(this.experienceLevel[ value ]);
     this.experienceLevel.splice(value, 1);
   }

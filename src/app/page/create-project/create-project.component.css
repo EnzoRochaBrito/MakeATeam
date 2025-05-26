@@ -12,7 +12,7 @@
 }
 
 .project-form form p {
-    color: grey;
+    color: var(--not-black);
     font-weight: 600;
 }
 
@@ -22,7 +22,7 @@
 
 .add-tech-btn{
     border-radius: 0 5px 5px 0;
-    background-color: var(--bs-primary);
+    background-color: var(--deep-blue);
     color: white;
     border: none;
 }
