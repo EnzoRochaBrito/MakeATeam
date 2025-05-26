@@ -2,7 +2,7 @@
 
     <div class="project-wrapper mx-auto p-md-3 p-0 mb-md-2 mb-0 row">
         <div class="project col-12 col-md-8 bg-white px-2 py-4 shadow-sm position-relative">
-            <p *ngIf="available > 0; else closed_project" class="available mb-0 text-success position-absolute top-0 end-0 m-3">{{ available }} vaga<span *ngIf="available > 1">s</span> disponíveis</p>
+            <p *ngIf="available > 0; else closed_project" class="available mb-0 text-success position-absolute top-0 end-0 m-3">{{ available }} <span *ngIf="available > 1">vagas disponíveis</span><span *ngIf="!available">vaga disponível</span></p>
             <ng-template #closed_project>
                 <p class="available mb-0 text-danger position-absolute top-0 end-0 m-3">Sem vagas disponíveis</p>
             </ng-template>

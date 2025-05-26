@@ -34,6 +34,10 @@ export class UserComponent implements OnInit {
     this.uid = this.route.snapshot.paramMap.get('uid')!;
     this.userProfile = await this.userService.getUser(this.uid) as IUserProfile;
 
+    if((!this.userProfile.stack)){
+      this.userProfile.stack = []
+    }
+
     console.log(this.userProfile)
     
     if (!this.userProfile.description){
@@ -52,11 +56,7 @@ export class UserComponent implements OnInit {
   }
 
   addStack(){
-    if((!this.userProfile.stack)){
-      this.userProfile.stack = []
-    }
       if (this.userStack){
-  
         this.userProfile.stack?.push(this.userStack.trim().toLowerCase())
         this.userStack = '';
       }
