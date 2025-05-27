@@ -62,7 +62,7 @@ export class UserServiceService implements OnInit {
       
     } catch (error) {
       
-      this.toastr.success('Erro ao salvar projeto')
+      this.toastr.error('Erro ao salvar projeto')
       console.log(error);
     
     }

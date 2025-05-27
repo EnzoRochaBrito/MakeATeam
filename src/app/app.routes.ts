@@ -16,8 +16,7 @@ export const routes: Routes = [
     },
     {
         path: "open",
-        loadComponent: () => import('./page/open-projects/open-projects.component').then(m => m.OpenProjectsComponent),
-        canActivate: [isLoggedGuard]
+        loadComponent: () => import('./page/open-projects/open-projects.component').then(m => m.OpenProjectsComponent)
     },
     {
         path: "create",
@@ -26,8 +25,7 @@ export const routes: Routes = [
     },
     {
         path: "project/:uid",
-        loadComponent: () => import('./page/project/project.component').then(m => m.ProjectComponent),
-        canActivate: [isLoggedGuard]
+        loadComponent: () => import('./page/project/project.component').then(m => m.ProjectComponent)
     },
     {
         path: "user/:uid",

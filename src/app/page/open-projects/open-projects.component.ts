@@ -6,6 +6,7 @@ import { ProjectType, ProjectTypeUid } from '../../utils/type/project.type';
 import { ProjectService } from '../../services/project.service';
 import { CommonModule } from '@angular/common';
 import { OrderByDirection } from '@angular/fire/firestore';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-open-projects',

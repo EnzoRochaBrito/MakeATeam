@@ -10,10 +10,12 @@
         <div class="buttons d-flex flex-row gap-2 align-items-center">
             <ul class="list-unstyled mb-0 text-center">
                 <li class="link list-inline-item" routerLink="/open">Início</li>
-                <li class="link list-inline-item text-primary" routerLink="/my-project">Meus Projetos</li>
+                <li *ngIf="!!userUid" class="link list-inline-item text-primary" routerLink="/my-project">Meus Projetos</li>
+                <li *ngIf="!userUid" class="link list-inline-item" routerLink="/register">Registrar</li>
+                <li *ngIf="!userUid" class="link list-inline-item" routerLink="/login">Login</li>
             </ul>
-            <acess-button logo="./header/create.svg" routerLink="/create"></acess-button>
-            <acess-button logo="./header/person.svg" [routerLink]="['/user', userUid]"></acess-button>
+            <acess-button *ngIf="!!userUid" logo="./header/create.svg" routerLink="/create"></acess-button>
+            <acess-button *ngIf="!!userUid" logo="./header/person.svg" [routerLink]="['/user', userUid]"></acess-button>
         </div>
     </div>
 </header>

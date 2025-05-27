@@ -21,7 +21,7 @@ export class AuthService {
   constructor(readonly toastr: ToastrService, readonly router: Router) {
     onAuthStateChanged(this.auth, user => {
       this.currentUser.set(user);
-      this.isLogged.set(!!user)
+      this.isLogged.set(!!user);
     });
   }
 
@@ -96,11 +96,12 @@ export class AuthService {
   }
 
   logout(){
-    this.toastr.info('Deslogando')
-    sessionStorage.clear()
-    localStorage.clear()
-    this.router.navigate(['/login'])
-    return from(signOut(this.auth));
+    this.toastr.info('Deslogando');
+    sessionStorage.clear();
+    localStorage.clear();
+    this.router.navigate(['/login']);
+    from(signOut(this.auth));
+    return
   }
 
 }
