@@ -107,6 +107,7 @@ export class ProjectService {
       
       const projectRef = doc(this.firestore, 'project', projectUid);
   
+      console.log(this.userUid)
       await updateDoc(projectRef, {
       memberRequest: arrayUnion(this.userUid)
       });
@@ -127,6 +128,18 @@ export class ProjectService {
         open: false
       });
       this.toastr.warning('Quantidade máxima atingida!', 'Projeto Fechado')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  public async openProject(projectUid: string){
+    try {
+      const projectRef = doc(this.firestore, 'project', projectUid);
+      await updateDoc(projectRef, {
+        open: true
+      });
+      this.toastr.warning('Projeto Reaberto!')
     } catch (error) {
       console.log(error)
     }
@@ -163,6 +176,32 @@ export class ProjectService {
     
   }
   
+  public async removeMember(project: ProjectTypeUid, userUid: string){
+    
+    const projectUid = project.uid
+
+    try {
+      const projectRef = doc(this.firestore, 'project', projectUid);
+      const userRef    = doc(this.firestore, 'user', userUid);
+  
+      await updateDoc(projectRef, {
+        members: arrayRemove(userUid)
+      });
+
+      await updateDoc(userRef, {
+        memberOf: arrayRemove(projectUid)
+      })
+
+      this.toastr.info('Usuário removido com sucesso!')
+    } catch (error) {
+      
+      this.toastr.error('Erro ao remover o usuário')
+      console.log(error)
+      
+    }
+    
+  }
+
   public async deleteRequest(project: ProjectTypeUid, userUid: string){
     try {
       const projectRef = doc(this.firestore, 'project', project.uid);
