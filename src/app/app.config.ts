@@ -10,11 +10,12 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { provideToastr } from './toastr.config';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()), provideToastr, NgbModule
+    provideFirestore(() => getFirestore()), provideToastr, NgbModule, NgbDropdownModule
   ]
 };

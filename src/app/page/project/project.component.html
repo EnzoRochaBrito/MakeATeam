@@ -85,13 +85,21 @@
             </h1>
             <ul class="list-group list-group-flush">
                 <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline"><p class="mb-0 d-inline-block" [routerLink]="['/user', creatorId]">{{projectBody.creator}} <span class="text-success">(Dono)</span></p></li>
-                <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline d-flex flex-row align-items-center justify-content-between" *ngFor="let m of members">
+                <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline d-flex flex-row align-items-center justify-content-between position-relative" *ngFor="let m of members">
                     <p class="mb-0" [routerLink]="['/user', m[1]]">
                         {{m[0]}}
                     </p>
-                    <div class="beside-name d-flex flex-row align-items-center gap-2">
-                        <p class="mb-0 text-decoration-none">[TAG]</p>
-                        <img *ngIf="!canAcess" class="config-user" (click)="open()" src="others/gear.svg" alt="">
+                    <div class="beside-name d-flex flex-row align-items-center gap-0">
+                        <p class="mb-0 text-decoration-none me-5">[TAG]</p>
+                        <div *ngIf="!canAcess" class="dropdown position-fixed">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
                     </div>
                 </li>
               </ul>
