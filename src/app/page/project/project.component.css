@@ -52,7 +52,7 @@ main {
 
 .member-name{
     max-height: min-content;
-    p{
+    p.username{
         cursor: pointer;
         text-wrap: nowrap;  
     }
@@ -64,4 +64,19 @@ main {
 
 .config-user{
     cursor: pointer;
+}
+
+.edit-tag-modal{
+    min-width: 100px;
+    width: max-content;
+    max-width: 90vw;
+}
+
+.close-modal {
+    cursor: pointer;
+    transition: scale .1s;
+    scale: 1.4;
+    &:hover{
+        scale: 1.2;
+    }
 }

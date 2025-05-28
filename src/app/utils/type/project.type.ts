@@ -13,6 +13,9 @@ export interface ProjectType {
     createdAt: number
     userRef: any
     creator: string
+    tags: {
+        [uid: string]: string;
+    }
 }
 
 export interface ProjectTypeUid extends ProjectType {

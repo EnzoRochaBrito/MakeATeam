@@ -13,7 +13,7 @@ import { user } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-project',
-  imports: [StandartComponent, DatePipe, CommonModule, RouterLink],
+  imports: [StandartComponent, DatePipe, CommonModule, RouterLink, FormsModule],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })
@@ -26,6 +26,11 @@ export class ProjectComponent implements OnInit {
   currentUserUid!: string;
   available!: number;
   members: [string, string][] = [];
+
+  currentTag: string = '';
+  showTagModal: boolean = false;
+  selectedUser!: [string, string];
+  selectedTag!: string;
 
   categoryMap = [
     'Desenvolvimento Web',
@@ -102,4 +107,25 @@ export class ProjectComponent implements OnInit {
     
   }
 
+  async editTag(member: [string, string], tag: string){
+    this.selectedUser = member
+    this.selectedTag  = tag
+    if (!this.selectedTag){
+      this.selectedTag = ''
+    }
+    this.toggleModal()
+  }
+
+  async saveUserTag(){
+    try {
+      await this.projectService.editUserTag(this.projectBody, this.selectedUser[1], this.selectedTag);
+      this.projectBody.tags[this.selectedUser[1]] = this.selectedTag;
+    } catch (error) {
+      
+    }
+  }
+  
+  toggleModal(){
+    this.showTagModal = !this.showTagModal;
+  }
 }

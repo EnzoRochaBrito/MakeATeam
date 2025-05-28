@@ -1,3 +1,19 @@
+
+<ng-template #edit_tag>
+    <div class="edit-tag-modal position-fixed top-50 start-50 translate-middle card">
+        <div class="card-title w-auto bg-light p-1 d-flex flex-row align-items-center justify-content-between">
+            <p class="mb-0 fs-5">{{selectedUser[0]}}</p>
+            <div class="close-modal ms-1">
+                <img (click)="toggleModal()" src="others/x.svg" alt="">
+            </div>
+        </div>
+        <div class="card-body">
+            <input type="text" class="form-control d-block" [(ngModel)]="selectedTag">
+            <div (click)="saveUserTag()" class="btn btn-success w-100 mt-2">Salvar</div>
+        </div>
+    </div>
+</ng-template>
+
 <ng-template #one>
     vaga disponível
 </ng-template>
@@ -85,25 +101,24 @@
             </h1>
             <ul class="list-group list-group-flush">
                 <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline"><p class="mb-0 d-inline-block" [routerLink]="['/user', creatorId]">{{projectBody.creator}} <span class="text-success">(Dono)</span></p></li>
-                <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration-underline d-flex flex-row align-items-center justify-content-between position-relative overflow-x-visible" *ngFor="let m of members">
-                    <p class="mb-0" [routerLink]="['/user', m[1]]">
-                        
+                <li class="tags member-name list-group-item text-primary overflow-x-auto text-decoration d-flex flex-row align-items-center justify-content-between position-relative overflow-x-visible" *ngFor="let m of members">
+                    <p class="mb-0 username" [routerLink]="['/user', m[1]]">
                         {{m[0]}}
                     </p>
                     <div class="beside-name d-flex flex-row align-items-center gap-0 overflow-visible">
-                        <p class="mb-0 text-decoration-none">[TAG]</p>
+                        <p class="mb-0 text-decoration-none" *ngIf="!!this.projectBody.tags[m[1]]" [id]="m[1]">[{{this.projectBody.tags[m[1]]}}]</p>
                         <div class="dropdown overflow-visible">
                             <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Editar Tag</a></li>
+                                <li><a class="dropdown-item" (click)="editTag(m, this.projectBody.tags[m[1]])">Editar Tag</a></li>
                                 <li><a class="dropdown-item text-danger" (click)="removeUser(m[1])">Remover Usuário</a></li>
                             </ul>
+                            <div class="" *ngIf="!showTagModal; else edit_tag"></div>
                         </div>
                     </div>
                 </li>
               </ul>
         </div>
     </div>
-
 </app-standart>

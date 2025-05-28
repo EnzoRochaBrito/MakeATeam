@@ -218,4 +218,20 @@ export class ProjectService {
 
     }
   }
+
+  public async editUserTag(project: ProjectTypeUid, userUid: string, tag: string) {
+    try {
+      const projectRef = doc(this.firestore, 'project', project.uid);
+      
+      await updateDoc(projectRef, {
+        tags: {[userUid]: tag}
+      });
+      
+      this.toastr.success('Tag atribuida com sucesso')
+    } catch (error) {
+
+      this.toastr.info('Erro ao atribuir tag')
+      console.log(error)
+    }
+  }
 }
