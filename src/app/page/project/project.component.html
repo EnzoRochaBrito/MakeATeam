@@ -107,7 +107,7 @@
                     </p>
                     <div class="beside-name d-flex flex-row align-items-center gap-0 overflow-visible">
                         <p class="mb-0 text-decoration-none" *ngIf="!!this.projectBody.tags[m[1]]" [id]="m[1]">[{{this.projectBody.tags[m[1]]}}]</p>
-                        <div class="dropdown overflow-visible">
+                        <div *ngIf="canAcess" class="dropdown overflow-visible">
                             <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
